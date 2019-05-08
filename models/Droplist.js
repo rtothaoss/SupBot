@@ -24,7 +24,7 @@ var DroplistSchema = new Schema({
       type: String,
       required: false
   },
-  style: {
+  category: {
       type: String,
       required: false
   }

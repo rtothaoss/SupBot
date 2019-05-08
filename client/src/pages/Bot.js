@@ -60,7 +60,8 @@ class Bot extends Component {
             ccYear: '',
             CVV: ''
         },
-        items: []
+        items: [],
+        success: false
     }
 
     handleInputChange = event => {
@@ -126,21 +127,6 @@ class Bot extends Component {
           )
       }
 
-      droplistLoaded = () => {
-        API.loadDroplist()
-          .then(res =>
-            this.setState({
-              success: true,
-            }))
-          .catch(() => this.setState({
-            books: [],
-            message: "No books found! Try Again!"
-          }, () => {
-              console.log(this.state.success)
-          })
-          )
-      }
-
       componentDidMount() {
         this.droplistLoaded();
     }
@@ -157,7 +143,18 @@ class Bot extends Component {
             })
             
     }
-    
+
+    handleFormSubmit = event => {
+       
+          API.card1picks({
+            category: 'accessories',
+            title: "Diamond Plate Zippo",
+            itemColor: "Black",
+            itemSize: "Large"
+          })
+            .then(res => console.log('it worked!'))
+            .catch(err => console.log(err));
+      };
 
     render() {
         return (
@@ -198,13 +195,20 @@ class Bot extends Component {
                         <br></br>
                         <br></br>
                         <br></br>
+                        <button>Add Selection</button>
+                        <br></br>
+                        <br></br>
                         <h3>Card 2</h3>
                         <br></br>
                         <br></br>
                         <br></br>
                         <br></br>
                         <br></br>
-                        <button onClick={this.droplistLoaded}>Test</button>
+                        <button>Add Selection</button>
+                        <br></br>
+                        <br></br>
+                        <h3>Bot Functions</h3>
+                        <button onClick={this.handleFormSubmit}>Test</button>
                         <button>Run Bot Card#1</button>
                         <button>Run Bot Card#2</button>
                     </Jumbotron>
