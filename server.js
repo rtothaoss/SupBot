@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === "production") {
 
 app.use(routes);
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/supbotauth");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/supreme");
 
 
 

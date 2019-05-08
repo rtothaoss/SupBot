@@ -1,6 +1,7 @@
 const axios = require("axios");
 const router = require("express").Router();
 var cheerio = require("cheerio");
+var db = require('../../models');
 
 // router.get("/recipes", (req, res) => {
 //   axios
@@ -34,7 +35,7 @@ router.get("/scrape", function (req, res) {
     });
 
     droplistPage();
-    res.json(results);
+    res.send("scrape Complete");
     
   });
 });
@@ -70,13 +71,55 @@ function droplistPage() {
       result.style = $(this)
       .attr('data-masonry-filter');
 
-       ()=> res.json(results) 
 
-        res.json(results);
+
+      db.Droplist.create(result)
       
+      
+      .then(function (dbDroplist) {
+
+        console.log(dbDroplist);
+      })
+      .catch(function (err) {
+
+        console.log(err);
+      });
   });
       
     });
 }
+
+router.get("/droplist", function (req, res) {
+  db.Droplist.find({}).then(function (dbDroplist) {
+    res.json(dbDroplist)
+  })
+    .catch(function (err) {
+      res.json(err)
+    })
+});
+
+// app.get('/bot', (req, res) => {
+//   const SupremeBot = new Promise ((resolve, reject) =>{
+//     sup
+//     .supremeCard1()
+//       .then(data => {
+//         resolve(data)
+//       })
+//       .catch(err => reject('SupremeBot Failed!'))
+//   })
+//   const SupremeBot2 = new Promise((resolve, reject) => {
+//     sup
+//     .supremeCard2()
+//     .then(data => {
+//       resolve(data)
+//     })
+//     .catch(err => reject('SupremeBot2 Failed!'))
+//   })
+//   Promise.all([SupremeBot, SupremeBot2])
+//   .then(data => {
+//     res.render('index')
+//   })
+//   .catch(err => res.status(500).send(err))
+// })
 
 module.exports = router;

@@ -2,12 +2,15 @@ import React, { Component } from 'react'
 import Jumbotron from "../components/Jumbotron";
 import Card from "../components/Card";
 import { Col, Row, Container } from "../components/Grid";
+import API from "../utils/API";
 
-
-const style = {
+const styles = {
     card: {
         width: "18rem",
         margin: "20px 10px"
+    },
+    jumbotron: {
+        marginTop: '40px'
     }
 }
 
@@ -16,50 +19,43 @@ const style = {
 class UpcomingDrop extends Component {
 
     state = {
-        title: 'hello working title',
-        body: 'test test',
-        linkURL: 'www.google.com',
-        linkName: 'test'
+        items: []
     }
 
+    componentDidMount() {
+        this.droplistLoaded();
+    }
+
+    droplistLoaded = () => {
+        API.loadDroplist()
+            .then(res =>
+                this.setState({
+                    items: res.data
+                }))
+            .catch(() => {console.log('error')
+            }, () => {
+                console.log(this.state.items)
+            })
+            
+    }
 
     render() {
         return (
             <Container>
-                <Row>
-                <Col size="md-4">
-                    <Card style={style.card}
-                        title={this.state.title}
-                        body={this.state.body}
-                        linkURL={this.state.linkURL}
-                        linkName={this.state.linkName}
-                        imageSRC={'https://preview.redd.it/ng5mb64idb401.jpg?width=576&auto=webp&s=afc2a395fc177524d1023bb2892d14fd49710370'}
-                    />
-                    </Col>
-                <Col size="md-4">
-                    <Card style={style.card}
-                        title={this.state.title}
-                        body={this.state.body}
-                        linkURL={this.state.linkURL}
-                        linkName={this.state.linkName}
-                        imageSRC={'https://preview.redd.it/ng5mb64idb401.jpg?width=576&auto=webp&s=afc2a395fc177524d1023bb2892d14fd49710370'}
-                    />
-                    </Col>
-                <Col size="md-4">
-
-                    <Card style={style.card}
-                        title={this.state.title}
-                        body={this.state.body}
-                        linkURL={this.state.linkURL}
-                        linkName={this.state.linkName}
-                        imageSRC={'https://preview.redd.it/ng5mb64idb401.jpg?width=576&auto=webp&s=afc2a395fc177524d1023bb2892d14fd49710370'}
-                    />
-                    </Col>
-            
-                </Row>
-
-
-
+                <Jumbotron style={styles.jumbotron}>
+                    <Row>
+                    {this.state.items.map(item => (
+                        <Col size="md-4">
+                            <Card
+                                key={item._id}
+                                title={item.title}
+                                img={'https://www.supremecommunity.com' + item.img}
+                                summary={item.summary}
+                            />
+                        </Col>
+                    ))}
+                    </Row>
+                </Jumbotron>
             </Container>
 
         )
