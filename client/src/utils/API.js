@@ -8,11 +8,11 @@ export default {
   scrape: function() {
     return axios.get('/api/scrape')
   },
-  createCard1: function() {
-    return axios.post('/api/card1')
+  createCard1: function(data) {
+    return axios.post('/api/card1/', data)
   },
-  createCard2: function() {
-    return axios.post('/api/card2')
+  createCard2: function(data) {
+    return axios.post('/api/card2/', data)
   },
   card1picks: function() {
     return axios.post('/api/card1picks')

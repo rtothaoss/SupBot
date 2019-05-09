@@ -36,32 +36,29 @@ const styles = {
 class Bot extends Component {
 
     state = {
-        card1: {
-            name: '',
-            email: '',
-            telephone: '',
-            address: '',
-            zipcode: '',
-            city: '',
-            cc: '',
-            ccMonth: '',
-            ccYear: '',
-            CVV: ''
-        },
-        card2: {
-            name: '',
-            email: '',
-            telephone: '',
-            address: '',
-            zipcode: '',
-            city: '',
-            cc: '',
-            ccMonth: '',
-            ccYear: '',
-            CVV: ''
-        },
+        name: '',
+        email: '',
+        telephone: '',
+        address: '',
+        zipcode: '',
+        city: '',
+        cc: '',
+        ccMonth: '',
+        ccYear: '',
+        CVV: '',
+        name2: '',
+        email2: '',
+        telephone2: '',
+        address2: '',
+        zipcode2: '',
+        city2: '',
+        cc2: '',
+        ccMonth2: '',
+        ccYear2: '',
+        CVV2: '',
         items: [],
-        success: false
+        success: false,
+        
     }
 
     handleInputChange = event => {
@@ -72,45 +69,41 @@ class Bot extends Component {
     }
 
     handleFormSubmitCard1 = event => {
-        event.preventDefault();
-        this.setState({
-            card1: {
-                name: this.state.name,
-                email: this.state.email,
-                telephone: this.state.telephone,
-                address: this.state.address,
-                zipcode: this.state.zipcode,
-                city: this.state.city,
-                cc: this.state.cc,
-                ccMonth: this.state.ccMonth,
-                ccYear: this.state.ccYear,
-                CVV: this.state.CVV
-            }
-        }, () => {
-            console.log(this.state.card1)
+        
+        API.createCard1({
+            name: this.state.name,
+            email: this.state.email,
+            telephone: this.state.telephone,
+            address: this.state.address,
+            zipcode: this.state.zipcode,
+            city: this.state.city,
+            cc: this.state.cc,
+            ccMonth: this.state.ccMonth,
+            ccYear: this.state.ccYear,
+            CVV: this.state.CVV
         })
+        .then(() => alert('card 1 saved'))
+        .catch(err => console.log(err));
     };
 
 
     handleFormSubmitCard2 = event => {
-        event.preventDefault();
-        this.setState({
-            card2: {
-                name: this.state.name,
-                email: this.state.email,
-                telephone: this.state.telephone,
-                address: this.state.address,
-                zipcode: this.state.zipcode,
-                city: this.state.city,
-                cc: this.state.cc,
-                ccMonth: this.state.ccMonth,
-                ccYear: this.state.ccYear,
-                CVV: this.state.CVV
-            }
-        }, () => {
-            console.log(this.state.card2)
-        })
-    };
+        
+        API.createCard2({
+            name2: this.state.name2,
+            email2: this.state.email2,
+            telephone2: this.state.telephone2,
+            address2: this.state.address2,
+            zipcode2: this.state.zipcode2,
+            city2: this.state.city2,
+            cc2: this.state.cc2,
+            ccMonth2: this.state.ccMonth2,
+            ccYear2: this.state.ccYear2,
+            CVV2: this.state.CVV2
+          })
+            .then(() => alert('card 2 saved'))
+            .catch(err => console.log(err));
+      };
 
     scrapeSup = () => {
         API.scrape()
@@ -283,7 +276,7 @@ class Bot extends Component {
                         />
                         <Input
                             name="ccYear"
-                            value={this.state.ccYear}
+                            value={this.state.card1ccYear}
                             onChange={this.handleInputChange}
                             placeholder='ccYear'
                         />
@@ -301,77 +294,77 @@ class Bot extends Component {
                     <h1>CC#2 info here</h1>
                     <p>Collapsible</p>
                     <Row>
-                        <Input
-                            name="name"
-                            value={this.state.name}
+                        <Input 
+                            name="name2"
+                            value={this.state.name2}
                             onChange={this.handleInputChange}
                             placeholder='Full Name'
                         />
 
                         <Input
-                            name="email"
-                            value={this.state.email}
+                            name="email2"
+                            value={this.state.email2}
                             onChange={this.handleInputChange}
                             placeholder='Email'
                         />
 
                         <Input
-                            name="telephone"
-                            value={this.state.telephone}
+                            name="telephone2"
+                            value={this.state.telephone2}
                             onChange={this.handleInputChange}
                             placeholder='Telephone'
                         />
                     </Row>
                     <Row>
                         <Input
-                            name="address"
-                            value={this.state.address}
+                            name="address2"
+                            value={this.state.address2}
                             onChange={this.handleInputChange}
                             placeholder='Address'
                         />
 
                         <Input
-                            name="zipcode"
-                            value={this.state.zipcode}
+                            name="zipcode2"
+                            value={this.state.zipcode2}
                             onChange={this.handleInputChange}
                             placeholder='Zipcode'
                         />
                         <Input
-                            name="city"
-                            value={this.state.city}
+                            name="city2"
+                            value={this.state.city2}
                             onChange={this.handleInputChange}
                             placeholder='City'
                         />
                     </Row>
                     <Row>
                         <Input
-                            name="cc"
-                            value={this.state.cc}
+                            name="cc2"
+                            value={this.state.cc2}
                             onChange={this.handleInputChange}
                             placeholder='cc'
                         />
                         <Input
-                            name="CVV"
-                            value={this.state.CVV}
+                            name="CVV2"
+                            value={this.state.CVV2}
                             onChange={this.handleInputChange}
                             placeholder='CVV'
                         />
                         <Input
-                            name="ccMonth"
-                            value={this.state.ccMonth}
+                            name="ccMonth2"
+                            value={this.state.ccMonth2}
                             onChange={this.handleInputChange}
                             placeholder='ccMonth'
                         />
                         <Input
-                            name="ccYear"
-                            value={this.state.ccYear}
+                            name="ccYear2"
+                            value={this.state.ccYear2}
                             onChange={this.handleInputChange}
                             placeholder='ccYear'
                         />
                     </Row>
 
                     <FormBtn
-                        onClick={this.handleFormSubmitCard1}
+                        onClick={this.handleFormSubmitCard2}
                         type='success'
                     >Submit
                  </FormBtn>
