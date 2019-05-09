@@ -20,5 +20,9 @@ export default {
   card2picks: function() {
     return axios.post('/api/card2picks')
   },
+  deleteList: function() {
+    return axios.delete('/api/droplist')
+  }
+
 };
 
