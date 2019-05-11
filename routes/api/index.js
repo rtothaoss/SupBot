@@ -2,6 +2,7 @@ const axios = require("axios");
 const router = require("express").Router();
 var cheerio = require("cheerio");
 var db = require('../../models');
+const sup = require('../../bot/supreme')
 
 
 router.get("/droplist", function (req, res) {
@@ -131,28 +132,28 @@ function droplistPage() {
     });
 }
 
-// app.get('/bot', (req, res) => {
-//   const SupremeBot = new Promise ((resolve, reject) =>{
-//     sup
-//     .supremeCard1()
-//       .then(data => {
-//         resolve(data)
-//       })
-//       .catch(err => reject('SupremeBot Failed!'))
-//   })
-//   const SupremeBot2 = new Promise((resolve, reject) => {
-//     sup
-//     .supremeCard2()
-//     .then(data => {
-//       resolve(data)
-//     })
-//     .catch(err => reject('SupremeBot2 Failed!'))
-//   })
-//   Promise.all([SupremeBot, SupremeBot2])
-//   .then(data => {
-//     res.render('index')
-//   })
-//   .catch(err => res.status(500).send(err))
-// })
+router.get('/bot', (req, res) => {
+  const SupremeBot = new Promise ((resolve, reject) =>{
+    sup
+    .supremeCard1()
+      .then(data => {
+        resolve(data)
+      })
+      .catch(err => reject('SupremeBot Failed!'))
+  })
+  const SupremeBot2 = new Promise((resolve, reject) => {
+    sup
+    .supremeCard2()
+    .then(data => {
+      resolve(data)
+    })
+    .catch(err => reject('SupremeBot2 Failed!'))
+  })
+  Promise.all([SupremeBot, SupremeBot2])
+  .then(data => {
+    res.json(data)
+  })
+  .catch(err => res.status(500).send(err))
+})
 
 module.exports = router;

@@ -180,14 +180,19 @@ class Bot extends Component {
     }
 
     dropDownSelection() {
+        
         if(this.state.category === 'sweatshirts' || 'jackets' || 'tops-sweaters' || 'shirts') {
             console.log('small-xl')
+            console.log(this.state.category)
         } else if (this.state.category === 'shorts' || 'pants') {
             console.log('30-36')
+            console.log(this.state.category)
         } else if(this.state.category === 'shoes') {
             console.log('some shoe size')
+            console.log(this.state.category)
         } else 
         console.log('nothing')
+        console.log(this.state.category)
     }
 
     render() {
