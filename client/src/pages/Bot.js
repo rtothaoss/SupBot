@@ -5,7 +5,7 @@ import Jumbotron from "../components/Jumbotron";
 import Card from "../components/Card";
 import API from "../utils/API";
 import Modal from 'react-bootstrap4-modal'
-import Dropdown from "../components/Dropdown";
+import { ShirtDropdown, PantsizeDropdown, ShoeDropdown} from "../components/Dropdown";
 
 
 
@@ -122,6 +122,7 @@ class Bot extends Component {
 
     }
 
+
     deleteDropList = () => {
         API.deleteList()
             .then(res => console.log('scrape success'))
@@ -180,20 +181,44 @@ class Bot extends Component {
     }
 
     dropDownSelection() {
-        
-        if(this.state.category === 'sweatshirts' || 'jackets' || 'tops-sweaters' || 'shirts') {
-            console.log('small-xl')
-            console.log(this.state.category)
-        } else if (this.state.category === 'shorts' || 'pants') {
-            console.log('30-36')
-            console.log(this.state.category)
-        } else if(this.state.category === 'shoes') {
-            console.log('some shoe size')
-            console.log(this.state.category)
-        } else 
-        console.log('nothing')
-        console.log(this.state.category)
-    }
+        switch(this.state.category) {
+            case 'shoes':
+            return <ShoeDropdown></ShoeDropdown>
+            
+            
+            case 'jackets':
+            return <ShirtDropdown></ShirtDropdown>
+           
+            
+            case 'sweatshirts':
+            return <ShirtDropdown></ShirtDropdown>
+           
+
+            case 'tops-sweaters':
+            return <ShirtDropdown></ShirtDropdown>
+            
+
+            case 'shirts':
+            return <ShirtDropdown></ShirtDropdown>
+          
+            case 'shorts':
+            return <PantsizeDropdown></PantsizeDropdown>
+           
+
+            case 'pants':
+            return <PantsizeDropdown></PantsizeDropdown>
+            
+            case 'accessories':
+            return null
+
+            case 'hats':
+            return null
+
+            default: 
+            return null
+
+        }
+    } 
 
     render() {
         return (
@@ -212,11 +237,11 @@ class Bot extends Component {
                                 </div>
                                 <div className="modal-body">
                                     <img src={this.state.img} alt={this.state.title} />
-                                    {/* <p>{this.state.summary}</p> */}
-                                    <p>{this.dropDownSelection()}</p>
+
+                                    
                                 </div>
                                 <div className="modal-footer">
-                                <Dropdown></Dropdown>
+                                     {this.dropDownSelection()}
                                     <button type="button" className="btn btn-primary" onClick={this.viewModal}>
                                         Add to Card 1
                                     </button>
