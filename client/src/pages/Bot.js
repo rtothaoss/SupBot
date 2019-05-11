@@ -4,6 +4,8 @@ import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 import Card from "../components/Card";
 import API from "../utils/API";
+import Modal from 'react-bootstrap4-modal'
+import Dropdown from "../components/Dropdown";
 
 
 
@@ -58,6 +60,12 @@ class Bot extends Component {
         CVV2: '',
         items: [],
         success: false,
+        visible: false,
+        summary: '',
+        id: '',
+        title: '',
+        img: '',
+        category: ''
 
     }
 
@@ -126,7 +134,7 @@ class Bot extends Component {
     componentDidMount() {
         this.deleteDropList()
         this.scrapeSup();
-        setTimeout(() => {this.droplistLoaded()}, 2500)
+        setTimeout(() => { this.droplistLoaded() }, 2500)
     }
 
     droplistLoaded = () => {
@@ -153,9 +161,38 @@ class Bot extends Component {
             .catch(err => console.log(err));
     };
 
+    viewModal = (item) => {
+        if (!this.state.visible) {
+            console.log(item)
+            this.setState({
+                visible: true,
+                id: item.id,
+                summary: item.summary,
+                title: item.title,
+                category: item.category,
+                img: 'https://www.supremecommunity.com' + item.img
+            })
+        } else {
+            this.setState({
+                visible: false
+            })
+        }
+    }
+
+    dropDownSelection() {
+        if(this.state.category === 'sweatshirts' || 'jackets' || 'tops-sweaters' || 'shirts') {
+            console.log('small-xl')
+        } else if (this.state.category === 'shorts' || 'pants') {
+            console.log('30-36')
+        } else if(this.state.category === 'shoes') {
+            console.log('some shoe size')
+        } else 
+        console.log('nothing')
+    }
+
     render() {
         return (
-           <>
+            <>
                 <Row>
                     <Col size="md-10">
                         <Jumbotron style={styles.topJumbotron}>
@@ -164,226 +201,249 @@ class Bot extends Component {
                             <p>Why two cards are used</p>
                             <p>Risks of adding multiple items to each card</p>
 
+                            <Modal visible={this.state.visible} onClickBackdrop={this.modalBackdropClicked}>
+                                <div className="modal-header">
+                                    <h5 className="modal-title">{this.state.title}</h5>
+                                </div>
+                                <div className="modal-body">
+                                    <img src={this.state.img} alt={this.state.title} />
+                                    {/* <p>{this.state.summary}</p> */}
+                                    <p>{this.dropDownSelection()}</p>
+                                </div>
+                                <div className="modal-footer">
+                                <Dropdown></Dropdown>
+                                    <button type="button" className="btn btn-primary" onClick={this.viewModal}>
+                                        Add to Card 1
+                                    </button>
+                                    <button type="button" className="btn btn-primary" onClick={this.viewModal}>
+                                        Add to Card 2
+                                    </button>
+                                    <button type="button" className="btn btn-primary" onClick={this.viewModal}>
+                                        Close
+                                    </button>
+                                </div>
+                            </Modal>
                         </Jumbotron>
 
-
                         <Jumbotron style={styles.jumbotron}>
-                     
-                                        <Row>
-                                        {this.state.items.map(item => (
-                                            <Col size="md-3">
-                                                <Card style={styles.card}
-                                                    key={item._id}
-                                                    title={item.title}
-                                                    img={'https://www.supremecommunity.com' + item.img}
-                                                    summary={item.summary}
-                                                />
-                                            </Col>
-                                        ))}
-                                    </Row>
-                
-                </Jumbotron>
-                </Col>
-                            <Col size="md-2">
-                                <Jumbotron style={styles.checkout}>
-                                    <h1>Checkout</h1>
-                                    <h3>Card 1</h3>
-                                    <br></br>
-                                    <br></br>
-                                    <br></br>
-                                    <br></br>
-                                    <br></br>
-                                    <button>Add Selection</button>
-                                    <br></br>
-                                    <br></br>
-                                    <h3>Card 2</h3>
-                                    <br></br>
-                                    <br></br>
-                                    <br></br>
-                                    <br></br>
-                                    <br></br>
-                                    <button>Add Selection</button>
-                                    <br></br>
-                                    <br></br>
-                                    <h3>Bot Functions</h3>
-                                    <button onClick={this.droplistLoaded}>Test</button>
-                                    <button>Run Bot Card#1</button>
-                                    <button>Run Bot Card#2</button>
-                                </Jumbotron>
-                            </Col>
+
+                            <Row>
+                                {this.state.items.map(item => (
+                                    <Col size="md-3">
+                                        <Card style={styles.card}
+                                            key={item._id}
+                                            title={item.title}
+                                            img={'https://www.supremecommunity.com' + item.img}
+                                            summary={item.summary}
+                                            category={item.category}
+                                            onClick={() => { this.viewModal(item) }}
+                                        />
+                                    </Col>
+                                ))}
+                            </Row>
+
+                        </Jumbotron>
+                    </Col>
+                    <Col size="md-2">
+                        <Jumbotron style={styles.checkout}>
+                            <h1>Checkout</h1>
+                            <h3>Card 1</h3>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <button>Add Selection</button>
+                            <br></br>
+                            <br></br>
+                            <h3>Card 2</h3>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <button>Add Selection</button>
+                            <br></br>
+                            <br></br>
+                            <h3>Bot Functions</h3>
+                            <button onClick={this.droplistLoaded}>Test</button>
+                            <button>Run Bot Card#1</button>
+                            <button>Run Bot Card#2</button>
+                        </Jumbotron>
+                    </Col>
                 </Row>
-                        <Row>
-                            <Col size='md-5'>
-                                <Jumbotron style={styles.jumbotron}>
-                                    <h1>CC#1 info here</h1>
-                                    <p>Collapsible</p>
-                                    <Row>
-                                        <Input
-                                            name="name"
-                                            value={this.state.name}
-                                            onChange={this.handleInputChange}
-                                            placeholder='Full Name'
-                                        />
+                <Row>
+                    <Col size='md-5'>
+                        <Jumbotron style={styles.jumbotron}>
+                            <h1>CC#1 info here</h1>
+                            <p>Collapsible</p>
+                            <Row>
+                                <Input
+                                    name="name"
+                                    value={this.state.name}
+                                    onChange={this.handleInputChange}
+                                    placeholder='Full Name'
+                                />
 
-                                        <Input
-                                            name="email"
-                                            value={this.state.email}
-                                            onChange={this.handleInputChange}
-                                            placeholder='Email'
-                                        />
+                                <Input
+                                    name="email"
+                                    value={this.state.email}
+                                    onChange={this.handleInputChange}
+                                    placeholder='Email'
+                                />
 
-                                        <Input
-                                            name="telephone"
-                                            value={this.state.telephone}
-                                            onChange={this.handleInputChange}
-                                            placeholder='Telephone'
-                                        />
-                                    </Row>
-                                    <Row>
-                                        <Input
-                                            name="address"
-                                            value={this.state.address}
-                                            onChange={this.handleInputChange}
-                                            placeholder='Address'
-                                        />
+                                <Input
+                                    name="telephone"
+                                    value={this.state.telephone}
+                                    onChange={this.handleInputChange}
+                                    placeholder='Telephone'
+                                />
+                            </Row>
+                            <Row>
+                                <Input
+                                    name="address"
+                                    value={this.state.address}
+                                    onChange={this.handleInputChange}
+                                    placeholder='Address'
+                                />
 
-                                        <Input
-                                            name="zipcode"
-                                            value={this.state.zipcode}
-                                            onChange={this.handleInputChange}
-                                            placeholder='Zipcode'
-                                        />
-                                        <Input
-                                            name="city"
-                                            value={this.state.city}
-                                            onChange={this.handleInputChange}
-                                            placeholder='City'
-                                        />
-                                    </Row>
-                                    <Row>
-                                        <Input
-                                            name="cc"
-                                            value={this.state.cc}
-                                            onChange={this.handleInputChange}
-                                            placeholder='cc'
-                                        />
-                                        <Input
-                                            name="CVV"
-                                            value={this.state.CVV}
-                                            onChange={this.handleInputChange}
-                                            placeholder='CVV'
-                                        />
-                                        <Input
-                                            name="ccMonth"
-                                            value={this.state.ccMonth}
-                                            onChange={this.handleInputChange}
-                                            placeholder='ccMonth'
-                                        />
-                                        <Input
-                                            name="ccYear"
-                                            value={this.state.card1ccYear}
-                                            onChange={this.handleInputChange}
-                                            placeholder='ccYear'
-                                        />
-                                    </Row>
+                                <Input
+                                    name="zipcode"
+                                    value={this.state.zipcode}
+                                    onChange={this.handleInputChange}
+                                    placeholder='Zipcode'
+                                />
+                                <Input
+                                    name="city"
+                                    value={this.state.city}
+                                    onChange={this.handleInputChange}
+                                    placeholder='City'
+                                />
+                            </Row>
+                            <Row>
+                                <Input
+                                    name="cc"
+                                    value={this.state.cc}
+                                    onChange={this.handleInputChange}
+                                    placeholder='cc'
+                                />
+                                <Input
+                                    name="CVV"
+                                    value={this.state.CVV}
+                                    onChange={this.handleInputChange}
+                                    placeholder='CVV'
+                                />
+                                <Input
+                                    name="ccMonth"
+                                    value={this.state.ccMonth}
+                                    onChange={this.handleInputChange}
+                                    placeholder='ccMonth'
+                                />
+                                <Input
+                                    name="ccYear"
+                                    value={this.state.card1ccYear}
+                                    onChange={this.handleInputChange}
+                                    placeholder='ccYear'
+                                />
+                            </Row>
 
-                                    <FormBtn
-                                        onClick={this.handleFormSubmitCard1}
-                                        type='success'
-                                    >Submit
+                            <FormBtn
+                                onClick={this.handleFormSubmitCard1}
+                                type='success'
+                            >Submit
                  </FormBtn>
-                                </Jumbotron>
-                            </Col>
-                            <Col size='md-5'>
-                                <Jumbotron style={styles.jumbotron}>
-                                    <h1>CC#2 info here</h1>
-                                    <p>Collapsible</p>
-                                    <Row>
-                                        <Input
-                                            name="name2"
-                                            value={this.state.name2}
-                                            onChange={this.handleInputChange}
-                                            placeholder='Full Name'
-                                        />
+                        </Jumbotron>
+                    </Col>
+                    <Col size='md-5'>
+                        <Jumbotron style={styles.jumbotron}>
+                            <h1>CC#2 info here</h1>
+                            <p>Collapsible</p>
+                            <Row>
+                                <Input
+                                    name="name2"
+                                    value={this.state.name2}
+                                    onChange={this.handleInputChange}
+                                    placeholder='Full Name'
+                                />
 
-                                        <Input
-                                            name="email2"
-                                            value={this.state.email2}
-                                            onChange={this.handleInputChange}
-                                            placeholder='Email'
-                                        />
+                                <Input
+                                    name="email2"
+                                    value={this.state.email2}
+                                    onChange={this.handleInputChange}
+                                    placeholder='Email'
+                                />
 
-                                        <Input
-                                            name="telephone2"
-                                            value={this.state.telephone2}
-                                            onChange={this.handleInputChange}
-                                            placeholder='Telephone'
-                                        />
-                                    </Row>
-                                    <Row>
-                                        <Input
-                                            name="address2"
-                                            value={this.state.address2}
-                                            onChange={this.handleInputChange}
-                                            placeholder='Address'
-                                        />
+                                <Input
+                                    name="telephone2"
+                                    value={this.state.telephone2}
+                                    onChange={this.handleInputChange}
+                                    placeholder='Telephone'
+                                />
+                            </Row>
+                            <Row>
+                                <Input
+                                    name="address2"
+                                    value={this.state.address2}
+                                    onChange={this.handleInputChange}
+                                    placeholder='Address'
+                                />
 
-                                        <Input
-                                            name="zipcode2"
-                                            value={this.state.zipcode2}
-                                            onChange={this.handleInputChange}
-                                            placeholder='Zipcode'
-                                        />
-                                        <Input
-                                            name="city2"
-                                            value={this.state.city2}
-                                            onChange={this.handleInputChange}
-                                            placeholder='City'
-                                        />
-                                    </Row>
-                                    <Row>
-                                        <Input
-                                            name="cc2"
-                                            value={this.state.cc2}
-                                            onChange={this.handleInputChange}
-                                            placeholder='cc'
-                                        />
-                                        <Input
-                                            name="CVV2"
-                                            value={this.state.CVV2}
-                                            onChange={this.handleInputChange}
-                                            placeholder='CVV'
-                                        />
-                                        <Input
-                                            name="ccMonth2"
-                                            value={this.state.ccMonth2}
-                                            onChange={this.handleInputChange}
-                                            placeholder='ccMonth'
-                                        />
-                                        <Input
-                                            name="ccYear2"
-                                            value={this.state.ccYear2}
-                                            onChange={this.handleInputChange}
-                                            placeholder='ccYear'
-                                        />
-                                    </Row>
+                                <Input
+                                    name="zipcode2"
+                                    value={this.state.zipcode2}
+                                    onChange={this.handleInputChange}
+                                    placeholder='Zipcode'
+                                />
+                                <Input
+                                    name="city2"
+                                    value={this.state.city2}
+                                    onChange={this.handleInputChange}
+                                    placeholder='City'
+                                />
+                            </Row>
+                            <Row>
+                                <Input
+                                    name="cc2"
+                                    value={this.state.cc2}
+                                    onChange={this.handleInputChange}
+                                    placeholder='cc'
+                                />
+                                <Input
+                                    name="CVV2"
+                                    value={this.state.CVV2}
+                                    onChange={this.handleInputChange}
+                                    placeholder='CVV'
+                                />
+                                <Input
+                                    name="ccMonth2"
+                                    value={this.state.ccMonth2}
+                                    onChange={this.handleInputChange}
+                                    placeholder='ccMonth'
+                                />
+                                <Input
+                                    name="ccYear2"
+                                    value={this.state.ccYear2}
+                                    onChange={this.handleInputChange}
+                                    placeholder='ccYear'
+                                />
+                            </Row>
 
-                                    <FormBtn
-                                        onClick={this.handleFormSubmitCard2}
-                                        type='success'
-                                    >Submit
+                            <FormBtn
+                                onClick={this.handleFormSubmitCard2}
+                                type='success'
+                            >Submit
                  </FormBtn>
-                                </Jumbotron>
-                            </Col>
-                        </Row>
-                
-           </>
-                    )
-                }
-            
-            
-            }
-            
-            
-            
+                        </Jumbotron>
+                    </Col>
+                </Row>
+
+            </>
+        )
+    }
+
+
+}
+
+
+
 export default Bot;

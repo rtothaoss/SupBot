@@ -110,7 +110,7 @@ function droplistPage() {
       .find('.label-price')
       .text()
 
-      result.style = $(this)
+      result.category = $(this)
       .attr('data-masonry-filter');
 
 

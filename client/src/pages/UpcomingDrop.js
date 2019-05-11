@@ -27,7 +27,6 @@ class UpcomingDrop extends Component {
 
     state = {
         items: [],
-        modal: '',
         visible: false,
         summary: '',
         id: '',
