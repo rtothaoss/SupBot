@@ -5,6 +5,7 @@ var db = require('../../models');
 const sup = require('../../bot/supreme')
 
 
+
 router.get("/droplist", function (req, res) {
   db.Droplist.find({}).then(function (dbDroplist) {
     res.json(dbDroplist)
@@ -155,5 +156,7 @@ router.get('/bot', (req, res) => {
   })
   .catch(err => res.status(500).send(err))
 })
+
+
 
 module.exports = router;
