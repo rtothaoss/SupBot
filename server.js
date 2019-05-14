@@ -3,6 +3,10 @@ const path = require("path");
 const routes = require("./routes");
 const mongoose = require("mongoose");
 const app = express();
+// var cron = require('node-cron');
+var cronScrape = require('./cron/index')
+
+
 
 const PORT = process.env.PORT || 3002;
 
@@ -18,7 +22,17 @@ if (process.env.NODE_ENV === "production") {
 
 app.use(routes);
 
+// var task = cron.schedule('* * * * *', () =>  {
+//   console.log('stoped task');
+// }, {
+//   scheduled: false
+// });
+ 
+// task.start();
+
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/supreme");
+
+cronScrape.runCron()
 
 
 

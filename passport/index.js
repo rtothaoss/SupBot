@@ -7,6 +7,7 @@ const cookieSession = require("cookie-session");
 const cookieParser = require("cookie-parser");
 
 
+
 router.use(
     cookieSession({
       name: "session",
@@ -37,6 +38,27 @@ passport.use(new GoogleStrategy({
     }
 ))
 
+const authCheck = (req, res, next) => {
+  if (!req.user) {
+    res.status(401).json({
+      authenticated: false,
+      message: "user has not been authenticated"
+    });
+  } else {
+    next();
+  }
+};
+
+
+router.get("/", authCheck, (req, res) => {
+  res.status(200).json({
+    authenticated: true,
+    message: "user successfully authenticated",
+    user: req.user,
+    cookies: req.cookies
+  });
+});
+
 
 // serialize the user.id to save in the cookie session
 // so the browser will remember the user when login
@@ -56,8 +78,6 @@ passport.serializeUser((user, done) => {
   });
 
 
-
-
 router.get('/google', passport.authenticate('google', {
     scope: ['profile', 'email']
 }))
@@ -65,10 +85,9 @@ router.get('/google', passport.authenticate('google', {
 router.get('/google/callback',
     passport.authenticate('google'),
     function (req, res) {
-        res.redirect('http://localhost:3000')
+        res.redirect('http://localhost:3000/bot')
         console.log('done')
     });
-
 
 
 module.exports = router;

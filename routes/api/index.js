@@ -133,29 +133,29 @@ function droplistPage() {
     });
 }
 
-router.get('/bot', (req, res) => {
-  const SupremeBot = new Promise ((resolve, reject) =>{
-    sup
-    .supremeCard1()
-      .then(data => {
-        resolve(data)
-      })
-      .catch(err => reject('SupremeBot Failed!'))
-  })
-  const SupremeBot2 = new Promise((resolve, reject) => {
-    sup
-    .supremeCard2()
-    .then(data => {
-      resolve(data)
-    })
-    .catch(err => reject('SupremeBot2 Failed!'))
-  })
-  Promise.all([SupremeBot, SupremeBot2])
-  .then(data => {
-    res.json(data)
-  })
-  .catch(err => res.status(500).send(err))
-})
+// router.get('/bot', (req, res) => {
+//   const SupremeBot = new Promise ((resolve, reject) =>{
+//     sup
+//     .supremeCard1()
+//       .then(data => {
+//         resolve(data)
+//       })
+//       .catch(err => reject('SupremeBot Failed!'))
+//   })
+//   // const SupremeBot2 = new Promise((resolve, reject) => {
+//   //   sup
+//   //   .supremeCard2()
+//   //   .then(data => {
+//   //     resolve(data)
+//   //   })
+//   //   .catch(err => reject('SupremeBot2 Failed!'))
+//   // })
+//   Promise.all([SupremeBot])
+//   .then(data => {
+//     res.json(data)
+//   })
+//   .catch(err => res.status(500).send(err))
+// })
 
 
 

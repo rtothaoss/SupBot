@@ -35,29 +35,10 @@ class UpcomingDrop extends Component {
     }
 
     componentDidMount() {
-        this.deleteDropList()
-        this.scrapeSup();
-        setTimeout(() => { this.droplistLoaded() }, 2500)
+        this.droplistLoaded()
 
     }
 
-    scrapeSup = () => {
-        API.scrape()
-            .then(res => console.log('scrape success'))
-            .catch(() => {
-                console.log('error')
-            })
-
-    }
-
-    deleteDropList = () => {
-        API.deleteList()
-            .then(res => console.log('scrape success'))
-            .catch(() => {
-                console.log('error')
-            })
-
-    }
 
     droplistLoaded = () => {
         API.loadDroplist()

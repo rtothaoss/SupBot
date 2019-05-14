@@ -32,22 +32,22 @@ const styles = {
 
 }
 
-
-
-
 class Bot extends Component {
 
     state = {
-        name: '',
-        email: '',
-        telephone: '',
-        address: '',
-        zipcode: '',
-        city: '',
-        cc: '',
-        ccMonth: '',
-        ccYear: '',
-        CVV: '',
+        BASE_URL: 'https://www.supremenewyork.com/shop/all/accessories',
+        CHECKOUT: 'https://www.supremenewyork.com/checkout',
+        itemList1: 'Supreme®/Hanes® Tagless Tees (3 Pack)',
+        name: 'Ross Carmack',
+        email: "test@gmail.com",
+        telephone: "2142846049",
+        address: '111 Test Drive',
+        zipcode: '75075',
+        city: 'Plano',
+        cc: '1111111111111111',
+        ccMonth: '11',
+        ccYear: '2021',
+        CVV: '111',
         name2: '',
         email2: '',
         telephone2: '',
@@ -65,9 +65,32 @@ class Bot extends Component {
         id: '',
         title: '',
         img: '',
-        category: ''
+        category: '',
+        authenticated: false,
+        user: {}
 
     }
+
+    BASE_URL = 'https://www.supremenewyork.com/shop/all/accessories'
+    CHECKOUT = 'https://www.supremenewyork.com/checkout' 
+    itemList1 = 'Supreme®/Hanes® Tagless Tees (3 Pack)'
+    name= 'Ross Carmack' 
+    email = "test@gmail.com"
+    telephone = "2142846049"
+    address = '111 Test Drive'
+    zipcode = '75075'
+    city = 'Plano'
+    cc = '1111111111111111' 
+    ccMonth = '11'
+    ccYear = '2021'
+    CVV = '111'
+
+
+
+
+
+
+
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -113,29 +136,9 @@ class Bot extends Component {
             .catch(err => console.log(err));
     };
 
-    scrapeSup = () => {
-        API.scrape()
-            .then(res => console.log('scrape success'))
-            .catch(() => {
-                console.log('error')
-            })
-
-    }
-
-
-    deleteDropList = () => {
-        API.deleteList()
-            .then(res => console.log('scrape success'))
-            .catch(() => {
-                console.log('error')
-            })
-
-    }
 
     componentDidMount() {
-        this.deleteDropList()
-        this.scrapeSup();
-        setTimeout(() => { this.droplistLoaded() }, 2500)
+        this.droplistLoaded();
     }
 
     droplistLoaded = () => {
@@ -220,11 +223,46 @@ class Bot extends Component {
         }
     } 
 
+    _handleNotAuthenticated = () => {
+        this.setState({ authenticated: false });
+      };
+
+    //   _handleSignInClick = () => {
+    //     window.open("http://localhost:3002/auth/google")
+    //     this.setState({
+    //         authenticated: true
+    //     })
+    //   };
+
+      _handleSignInClick = () => {
+        API.login()
+        .then(res => {
+            this.setState({
+                authenticated: true
+            })
+        })
+        .catch(() => {
+            console.log('error')
+        })
+      }
+
+
+      bot1 = () => {
+          API.bot1() 
+          .then(res => console.log('firing bot'))
+          .catch(err => console.log(err))
+      }
+
     render() {
         return (
             <>
                 <Row>
                     <Col size="md-10">
+                        {/* <Jumbotron> 
+                        {this.state.authenticated ? (console.log(this.state.authenticated)) : (console.log(this.state.authenticated))}
+                            <button onClick={this._handleSignInClick}>Login</button>
+                            </Jumbotron> */}
+
                         <Jumbotron style={styles.topJumbotron}>
                             <h1>How it works</h1>
                             <p>How card information is stored</p>
@@ -297,7 +335,7 @@ class Bot extends Component {
                             <br></br>
                             <h3>Bot Functions</h3>
                             <button onClick={this.droplistLoaded}>Test</button>
-                            <button>Run Bot Card#1</button>
+                            <button onClick={this.bot1}>Run Bot Card#1</button>
                             <button>Run Bot Card#2</button>
                         </Jumbotron>
                     </Col>

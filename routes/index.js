@@ -1,8 +1,12 @@
 const path = require("path");
 const router = require("express").Router();
 const apiRoutes = require("./api");
+const botRoutes = require("../bot/botRoutes");
 const googleAuth = require('../passport/index')
 
+
+//Bot
+router.use('/bot', botRoutes)
 
 // //Google Auth
 router.use('/auth', googleAuth)

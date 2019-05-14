@@ -22,6 +22,15 @@ export default {
   },
   deleteList: function() {
     return axios.delete('/api/droplist')
+  },
+  login: function() {
+    return axios.get('/auth/google')
+  },
+  loginCallback: function() {
+    return axios.get('/auth/google/callback')
+  },
+  bot1: function() {
+    return axios.get('/bot/bot1')
   }
 
 };
