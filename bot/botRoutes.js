@@ -29,20 +29,29 @@ router.get('/bot1',(req, res) => {
         })
         .catch(err => reject('SupremeBot Failed!'))
     })
-    // const SupremeBot2 = new Promise((resolve, reject) => {
-    //   sup
-    //   .supremeCard2()
-    //   .then(data => {
-    //     resolve(data)
-    //   })
-    //   .catch(err => reject('SupremeBot2 Failed!'))
-    // })
     Promise.all([SupremeBot])
     .then(data => {
       res.json(data)
     })
     .catch(err => res.status(500).send(err))
   })
+
+  router.get('/bot2', (req,res) => {
+      const SupremeBot2 = new Promise((resolve, reject) => {
+      sup
+      .supremeCard2()
+      .then(data => {
+        resolve(data)
+      })
+      .catch(err => reject('SupremeBot2 Failed!'))
+    })
+    Promise.all([SupremeBot2])
+    .then(data => {
+      res.json(data)
+    })
+    .catch(err => res.status(500).send(err))
+  })
+  
 
 
   module.exports = router;

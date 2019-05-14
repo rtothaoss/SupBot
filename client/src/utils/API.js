@@ -31,6 +31,9 @@ export default {
   },
   bot1: function() {
     return axios.get('/bot/bot1')
+  },
+  bot2: function() {
+    return axios.get('/bot/bot2')
   }
 
 };

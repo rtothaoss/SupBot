@@ -67,30 +67,13 @@ class Bot extends Component {
         img: '',
         category: '',
         authenticated: false,
-        user: {}
+        user: {},
+        card1cart: '',
+        card2cart: '',
+        size1: '',
+        size2: '',
 
     }
-
-    BASE_URL = 'https://www.supremenewyork.com/shop/all/accessories'
-    CHECKOUT = 'https://www.supremenewyork.com/checkout' 
-    itemList1 = 'Supreme®/Hanes® Tagless Tees (3 Pack)'
-    name= 'Ross Carmack' 
-    email = "test@gmail.com"
-    telephone = "2142846049"
-    address = '111 Test Drive'
-    zipcode = '75075'
-    city = 'Plano'
-    cc = '1111111111111111' 
-    ccMonth = '11'
-    ccYear = '2021'
-    CVV = '111'
-
-
-
-
-
-
-
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -253,6 +236,26 @@ class Bot extends Component {
           .catch(err => console.log(err))
       }
 
+      bot2 = () => {
+          API.bot2()
+          .then(res => console.log('firing bot'))
+          .catch(err => console.log(err))
+      }
+
+      addToCard1 = () => {
+          console.log(this.state.title)
+          this.setState({
+            card1cart: this.state.title,
+          })
+      }
+
+      addToCard2 = () => {
+        console.log(this.state.title)
+        this.setState({
+          card2cart: this.state.title
+        })
+    }
+
     render() {
         return (
             <>
@@ -280,10 +283,10 @@ class Bot extends Component {
                                 </div>
                                 <div className="modal-footer">
                                      {this.dropDownSelection()}
-                                    <button type="button" className="btn btn-primary" onClick={this.viewModal}>
+                                    <button type="button" className="btn btn-primary" onClick={this.addToCard1}>
                                         Add to Card 1
                                     </button>
-                                    <button type="button" className="btn btn-primary" onClick={this.viewModal}>
+                                    <button type="button" className="btn btn-primary" onClick={this.addToCard2}>
                                         Add to Card 2
                                     </button>
                                     <button type="button" className="btn btn-primary" onClick={this.viewModal}>
@@ -316,8 +319,7 @@ class Bot extends Component {
                         <Jumbotron style={styles.checkout}>
                             <h1>Checkout</h1>
                             <h3>Card 1</h3>
-                            <br></br>
-                            <br></br>
+                            <p>{this.state.card1cart}</p>
                             <br></br>
                             <br></br>
                             <br></br>
@@ -325,7 +327,7 @@ class Bot extends Component {
                             <br></br>
                             <br></br>
                             <h3>Card 2</h3>
-                            <br></br>
+                            <p>{this.state.card2cart}</p>
                             <br></br>
                             <br></br>
                             <br></br>

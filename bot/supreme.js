@@ -261,4 +261,4 @@ const supremeCard2 = async () => {
 
 
 module.exports.supremeCard1 = supremeCard1;
-// module.exports.supremeCard2 = supremeCard2;
+module.exports.supremeCard2 = supremeCard2;
