@@ -6,6 +6,7 @@ import Card from "../components/Card";
 import API from "../utils/API";
 import Modal from 'react-bootstrap4-modal'
 import { ShirtDropdown, PantsizeDropdown, ShoeDropdown} from "../components/Dropdown";
+import './botStyle.css'
 
 
 
@@ -70,8 +71,11 @@ class Bot extends Component {
         user: {},
         card1cart: '',
         card2cart: '',
-        size1: '',
-        size2: '',
+        size: '',
+        size1selection: '',
+        size2selection: '',
+        categoryBot1: '',
+        categoryBot2: ''
 
     }
 
@@ -169,30 +173,30 @@ class Bot extends Component {
     dropDownSelection() {
         switch(this.state.category) {
             case 'shoes':
-            return <ShoeDropdown></ShoeDropdown>
+            return <ShoeDropdown name="size" value={this.state.size} onChange={this.handleInputChange}></ShoeDropdown>
             
             
             case 'jackets':
-            return <ShirtDropdown></ShirtDropdown>
+            return <ShirtDropdown name="size" value={this.state.size} onChange={this.handleInputChange}></ShirtDropdown>
            
             
             case 'sweatshirts':
-            return <ShirtDropdown></ShirtDropdown>
+            return <ShirtDropdown name="size" value={this.state.size} onChange={this.handleInputChange}></ShirtDropdown>
            
 
             case 'tops-sweaters':
-            return <ShirtDropdown></ShirtDropdown>
+            return <ShirtDropdown name="size" value={this.state.size} onChange={this.handleInputChange}></ShirtDropdown>
             
 
             case 'shirts':
-            return <ShirtDropdown></ShirtDropdown>
+            return <ShirtDropdown name="size" value={this.state.size} onChange={this.handleInputChange}></ShirtDropdown>
           
             case 'shorts':
-            return <PantsizeDropdown></PantsizeDropdown>
+            return <PantsizeDropdown name="size" value={this.state.size} onChange={this.handleInputChange}></PantsizeDropdown>
            
 
             case 'pants':
-            return <PantsizeDropdown></PantsizeDropdown>
+            return <PantsizeDropdown name="size" value={this.state.size} onChange={this.handleInputChange}></PantsizeDropdown>
             
             case 'accessories':
             return null
@@ -228,14 +232,21 @@ class Bot extends Component {
             console.log('error')
         })
       }
-
+      buttonTest = () => {
+        console.log(this.state.card1cart)
+        console.log(this.state.categoryBot1)
+        console.log(this.state.size1selection)
+        console.log(this.state.card2cart)
+        console.log(this.state.categoryBot2)
+        console.log(this.state.size2selection)
+      }
 
       bot1 = () => {
           API.bot1({
             BASE_URL: 'https://www.supremenewyork.com/shop/all/accessories',
             CHECKOUT: 'https://www.supremenewyork.com/checkout',
             itemList1: 'Supreme®/Hanes® Tagless Tees (3 Pack)',
-            name: 'Ross Carmack',
+            name: 'Test Testerson',
             email: "test@gmail.com",
             telephone: "2142846049",
             address: '111 Test Drive',
@@ -251,7 +262,21 @@ class Bot extends Component {
       }
 
       bot2 = () => {
-          API.bot2()
+          API.bot2({
+            BASE_URL: 'https://www.supremenewyork.com/shop/all/accessories',
+            CHECKOUT: 'https://www.supremenewyork.com/checkout',
+            itemList1: 'Supreme®/Hanes® Tagless Tees (3 Pack)',
+            name: 'Test Testerson Jr.',
+            email: "test@gmail.com",
+            telephone: "2142846049",
+            address: '111 Test Drive',
+            zipcode: '75075',
+            city: 'Plano',
+            cc: '1111111111111111',
+            ccMonth: '11',
+            ccYear: '2021',
+            CVV: '111',
+          })
           .then(res => console.log('firing bot'))
           .catch(err => console.log(err))
       }
@@ -260,15 +285,32 @@ class Bot extends Component {
           console.log(this.state.title)
           this.setState({
             card1cart: this.state.title,
+            categoryBot1: this.state.category,
+            size1selection: this.state.size
           })
       }
 
       addToCard2 = () => {
         console.log(this.state.title)
         this.setState({
-          card2cart: this.state.title
+          card2cart: this.state.title,
+          categoryBot2: this.state.category,
+          size2selection: this.state.size
         })
     }
+
+    deleteSelectionCard1 = () => {
+        this.setState({
+            card1cart: ''
+        })
+    }
+
+    deleteSelectionCard2 = () => {
+        this.setState({
+            card2cart: ''
+        })
+    }
+
 
     render() {
         return (
@@ -282,9 +324,12 @@ class Bot extends Component {
 
                         <Jumbotron style={styles.topJumbotron}>
                             <h1>How it works</h1>
-                            <p>How card information is stored</p>
-                            <p>Why two cards are used</p>
-                            <p>Risks of adding multiple items to each card</p>
+                            <p className='text-left'>Choose an item from the list below and add it to "Card 1" or "Card 2". Don't worry you do not have to use two cards. You can fire off the card 1 bot seperately from the card 2 bot.</p>
+                            <p className='text-left'>Two cards are used because Supreme does not allow you to go back and keep purchasing items with the same card on that drop day.</p>
+                            <p className='text-left'>The bots can only take in one item a piece at this very moment. Future code will allow multiple items to be bought with the bot.</p>
+                            <p className='text-left'>Enter in your credit card information for bot you plan on using. If you are only using the first bot then add credit card information for that bot.</p>
+                            <p className='text-left'>The drop happens every Thursday at 10am Central. You will need to have all this information filled out before then so the bot will launch with all the correct information.</p>
+                            <p className='text-left'>Try and do this 30 mins before the drop and leave the page open so you see the bot at work.</p>
 
                             <Modal visible={this.state.visible} onClickBackdrop={this.modalBackdropClicked}>
                                 <div className="modal-header">
@@ -337,7 +382,7 @@ class Bot extends Component {
                             <br></br>
                             <br></br>
                             <br></br>
-                            <button>Add Selection</button>
+                            <button type='button' class='btn btn-dark'  onClick={this.deleteSelectionCard1}>Delete Selection</button>
                             <br></br>
                             <br></br>
                             <h3>Card 2</h3>
@@ -346,13 +391,13 @@ class Bot extends Component {
                             <br></br>
                             <br></br>
                             <br></br>
-                            <button>Add Selection</button>
+                            <button  type='button' class='btn btn-dark' onClick={this.deleteSelectionCard2}>Delete Selection</button>
                             <br></br>
                             <br></br>
                             <h3>Bot Functions</h3>
-                            <button onClick={this.bot1}>Test</button>
-                            <button onClick={this.bot1}>Run Bot Card#1</button>
-                            <button>Run Bot Card#2</button>
+                            <div><button type='button' class='btn btn-dark' onClick={this.bot1}>Run Bot Card#1</button></div>
+                            <div><button type='button' class='btn btn-dark' onClick={this.bot2} >Run Bot Card#2</button></div>
+                            <div><button type='button' class='btn btn-dark' onClick={this.buttonTest}>Test</button></div>
                         </Jumbotron>
                     </Col>
                 </Row>

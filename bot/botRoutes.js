@@ -30,22 +30,16 @@ router.post('/bot1',(req, res) => {
         .catch(err => res.status(500).send(err));
   })
 
-  router.get('/bot2', (req,res) => {
-      const SupremeBot2 = new Promise((resolve, reject) => {
+  router.post('/bot2', (req,res) => {
+      
       sup
-      .supremeCard2()
+      .supremeCard2(req.body)
       .then(data => {
-        resolve(data)
+        res.json(data)
       })
-      .catch(err => reject('SupremeBot2 Failed!'))
+      .catch(err => res.status(500).send(err))
     })
-    Promise.all([SupremeBot2])
-    .then(data => {
-      res.json(data)
-    })
-    .catch(err => res.status(500).send(err))
-  })
-  
+
 
 
   module.exports = router;

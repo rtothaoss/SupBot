@@ -32,8 +32,8 @@ export default {
   bot1: function(data) {
     return axios.post('/bot/bot1', data)
   },
-  bot2: function() {
-    return axios.get('/bot/bot2')
+  bot2: function(data) {
+    return axios.post('/bot/bot2', data)
   }
 
 };

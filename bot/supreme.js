@@ -158,104 +158,14 @@ const supremeCard2 = async () => {
 
 }
 
-// const supremeTestWithMouse = async () => {
 
-//   const browser = await puppeteer.launch({ headless: false });
-
-//   const page = await browser.newPage();
-
-//   await page.goto(BASE_URL1);
-
-//   let itemSelection = await page.$x(`//a[contains(text(), "${itemList1}")]`)
-
-//   await page.mouse.move(100, 100);
-//   await page.mouse.down();
-//   await page.mouse.move(200, 200);
-//   await page.mouse.up();
-
-//   await itemSelection[0].click();
-
-//   await page.waitFor(700)
-
-//   await page.mouse.move(100, 100);
-//   await page.mouse.down();
-//   await page.mouse.move(200, 200);
-//   await page.mouse.up();
-
-//   // await page.click(`a[data-style-name = "${itemColor1}"]`)
-
-//   await page.mouse.move(100, 100);
-//   await page.mouse.down();
-//   await page.mouse.move(200, 200);
-//   await page.mouse.up();
-
-//   let $elemHandler = await page.$('#s');
-//   let properties = await $elemHandler.getProperties();
-//   for (const property of properties.values()) {
-//     const element = property.asElement();
-//     if (element){
-//       let hText = await element.getProperty("text");
-//       let text = await hText.jsonValue();
-//       if(text===`${itemSize1}`){
-//          let hValue = await element.getProperty("value");
-//          let value = await hValue.jsonValue();
-//         await page.select("select#s",value); // or use 58730
-//         console.log(`Selected ${text} which is value ${value}.`);
-//       }
-//     }
-//   }
-
-//   await page.mouse.move(100, 100);
-//   await page.mouse.down();
-//   await page.mouse.move(200, 200);
-//   await page.mouse.up();
-
-//   await page.click('input[name = "commit"]')
-
-//   await page.waitFor(700)
-
-//   await page.goto(CHECKOUT);
-
-//   await page.type('input[id="order_billing_name"]', secondCard.name, {delay: 100})
-
-//   await page.type('input[id="order_email"]', secondCard.email, {delay: 100})
-
-//   await page.type('input[id="order_tel"]', secondCard.telephone, {delay: 100})
-
-//   await page.type('input[id="bo"]', secondCard.address, {delay: 100})
-
-//   await page.type('input[id="order_billing_zip"]', secondCard.zipcode, {delay: 100})
-
-//   await page.type('input[id="order_billing_city"]', secondCard.city, {delay: 100})
-
-//   await page.type('input[id="nnaerb"]', secondCard.cc, {delay: 100})
-
-//   await page.select('select#credit_card_month', secondCard.ccMonth)
-
-//   await page.select('select#credit_card_year', secondCard.ccYear)
-
-//   await page.type('input[id="orcer"]', secondCard.CVV)
-
-//   await page.waitFor(1500)
-
-//   await page.click("#order_terms")
-
-//   await page.mouse.move(100, 100);
-//   await page.mouse.down();
-//   await page.mouse.move(200, 200);
-//   await page.mouse.up();
-
-//   await page.click('input[name = "commit"]')
-
-
-// }
 
 
 
 
 // supremeCard1()
 // supremeCard2()
-// supremeTestWithMouse();
+
 
 
 
