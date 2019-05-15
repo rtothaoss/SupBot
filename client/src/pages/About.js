@@ -19,6 +19,7 @@ const About = () => {
         <Jumbotron className='supBackground' style={styles.background}>
      
             <div className='container'>
+            <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Supreme_Logo.svg/440px-Supreme_Logo.svg.png' alt='supreme_logo'></img>
                 <h3>What is Supreme?</h3>
                 <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
                 <h3>Why the bot?</h3> 

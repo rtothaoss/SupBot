@@ -40,7 +40,7 @@ puppeteer.use(pluginStealth())
 
 
 
-const supremeCard1 = async (BASE_URL, CHECKOUT, itemList1, name, email, telephone, address, zipcode, city, cc, ccMonth, ccYear, CVV) => {
+const supremeCard1 = async ({BASE_URL, CHECKOUT, itemList1, name, email, telephone, address, zipcode, city, cc, ccMonth, ccYear, CVV}) => {
 
   const browser = await puppeteer.launch({ headless: false });
 

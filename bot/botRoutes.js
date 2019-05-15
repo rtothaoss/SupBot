@@ -19,21 +19,15 @@ const sup = require('../bot/supreme')
     let CVV = '111'
 
 
-router.get('/bot1',(req, res) => {
+router.post('/bot1',(req, res) => {
     
-    const SupremeBot = new Promise ((resolve, reject) =>{
+   
       sup
-      .supremeCard1(BASE_URL, CHECKOUT, itemList1, name, email, telephone, address, zipcode, city, cc, ccMonth, ccYear, CVV)
+      .supremeCard1(req.body)
         .then(data => {
-          resolve(data)
+          res.json(data)
         })
-        .catch(err => reject('SupremeBot Failed!'))
-    })
-    Promise.all([SupremeBot])
-    .then(data => {
-      res.json(data)
-    })
-    .catch(err => res.status(500).send(err))
+        .catch(err => res.status(500).send(err));
   })
 
   router.get('/bot2', (req,res) => {

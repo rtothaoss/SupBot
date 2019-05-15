@@ -29,8 +29,8 @@ export default {
   loginCallback: function() {
     return axios.get('/auth/google/callback')
   },
-  bot1: function() {
-    return axios.get('/bot/bot1')
+  bot1: function(data) {
+    return axios.post('/bot/bot1', data)
   },
   bot2: function() {
     return axios.get('/bot/bot2')

@@ -231,7 +231,21 @@ class Bot extends Component {
 
 
       bot1 = () => {
-          API.bot1() 
+          API.bot1({
+            BASE_URL: 'https://www.supremenewyork.com/shop/all/accessories',
+            CHECKOUT: 'https://www.supremenewyork.com/checkout',
+            itemList1: 'Supreme®/Hanes® Tagless Tees (3 Pack)',
+            name: 'Ross Carmack',
+            email: "test@gmail.com",
+            telephone: "2142846049",
+            address: '111 Test Drive',
+            zipcode: '75075',
+            city: 'Plano',
+            cc: '1111111111111111',
+            ccMonth: '11',
+            ccYear: '2021',
+            CVV: '111',
+          }) 
           .then(res => console.log('firing bot'))
           .catch(err => console.log(err))
       }
@@ -336,7 +350,7 @@ class Bot extends Component {
                             <br></br>
                             <br></br>
                             <h3>Bot Functions</h3>
-                            <button onClick={this.droplistLoaded}>Test</button>
+                            <button onClick={this.bot1}>Test</button>
                             <button onClick={this.bot1}>Run Bot Card#1</button>
                             <button>Run Bot Card#2</button>
                         </Jumbotron>
