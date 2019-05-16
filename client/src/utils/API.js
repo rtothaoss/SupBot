@@ -34,6 +34,9 @@ export default {
   },
   bot2: function(data) {
     return axios.post('/bot/bot2', data)
+  },
+  tester: function(data) {
+    return axios.post('/bot/tester', data)
   }
 
 };

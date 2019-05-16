@@ -30,6 +30,11 @@ const styles = {
         margin: "20px 10px",
         minHeight: '500px'
     },
+    howItWorksJumbo: {
+        marginTop: "40px",
+        marginLeft: "15px",
+        textAlign: "left"
+    }
 
 }
 
@@ -39,16 +44,16 @@ class Bot extends Component {
         BASE_URL: 'https://www.supremenewyork.com/shop/all/accessories',
         CHECKOUT: 'https://www.supremenewyork.com/checkout',
         itemList1: 'Supreme®/Hanes® Tagless Tees (3 Pack)',
-        name: 'Ross Carmack',
-        email: "test@gmail.com",
-        telephone: "2142846049",
-        address: '111 Test Drive',
-        zipcode: '75075',
-        city: 'Plano',
-        cc: '1111111111111111',
-        ccMonth: '11',
-        ccYear: '2021',
-        CVV: '111',
+        name: '',
+        email: '',
+        telephone: '',
+        address: '',
+        zipcode: '',
+        city: '',
+        cc: '',
+        ccMonth: '',
+        ccYear: '',
+        CVV: '',
         name2: '',
         email2: '',
         telephone2: '',
@@ -86,9 +91,9 @@ class Bot extends Component {
         })
     }
 
-    handleFormSubmitCard1 = event => {
+    handleFormSubmitCard1 = () => {
 
-        API.createCard1({
+        this.setState({
             name: this.state.name,
             email: this.state.email,
             telephone: this.state.telephone,
@@ -100,14 +105,13 @@ class Bot extends Component {
             ccYear: this.state.ccYear,
             CVV: this.state.CVV
         })
-            .then(() => alert('card 1 saved'))
-            .catch(err => console.log(err));
+        alert('Card 1 data updated')
     };
 
 
-    handleFormSubmitCard2 = event => {
+    handleFormSubmitCard2 = () => {
 
-        API.createCard2({
+        this.setState({
             name2: this.state.name2,
             email2: this.state.email2,
             telephone2: this.state.telephone2,
@@ -119,8 +123,7 @@ class Bot extends Component {
             ccYear2: this.state.ccYear2,
             CVV2: this.state.CVV2
         })
-            .then(() => alert('card 2 saved'))
-            .catch(err => console.log(err));
+       
     };
 
 
@@ -233,6 +236,7 @@ class Bot extends Component {
         })
       }
       buttonTest = () => {
+        console.log(this.state.name)
         console.log(this.state.card1cart)
         console.log(this.state.categoryBot1)
         console.log(this.state.size1selection)
@@ -246,16 +250,16 @@ class Bot extends Component {
             BASE_URL: 'https://www.supremenewyork.com/shop/all/accessories',
             CHECKOUT: 'https://www.supremenewyork.com/checkout',
             itemList1: 'Supreme®/Hanes® Tagless Tees (3 Pack)',
-            name: 'Test Testerson',
-            email: "test@gmail.com",
-            telephone: "2142846049",
-            address: '111 Test Drive',
-            zipcode: '75075',
-            city: 'Plano',
-            cc: '1111111111111111',
-            ccMonth: '11',
-            ccYear: '2021',
-            CVV: '111',
+            name: this.state.name,
+            email: this.state.email,
+            telephone: this.state.telephone,
+            address: this.state.address,
+            zipcode: this.state.zipcode,
+            city: this.state.city,
+            cc: this.state.cc,
+            ccMonth: this.state.ccMonth,
+            ccYear: this.state.ccYear,
+            CVV: this.state.CVV,
           }) 
           .then(res => console.log('firing bot'))
           .catch(err => console.log(err))
@@ -279,6 +283,24 @@ class Bot extends Component {
           })
           .then(res => console.log('firing bot'))
           .catch(err => console.log(err))
+      }
+
+      testBot = () => {
+          API.tester({
+            BASE_URL: 'https://www.supremenewyork.com/shop/all/accessories',
+            CHECKOUT: 'https://www.supremenewyork.com/checkout',
+            itemList1: 'Supreme®/Hanes® Tagless Tees (3 Pack)',
+            name: this.state.name,
+            email: this.state.email,
+            telephone: this.state.telephone,
+            address: this.state.address,
+            zipcode: this.state.zipcode,
+            city: this.state.city,
+            cc: this.state.cc,
+            ccMonth: this.state.ccMonth,
+            ccYear: this.state.ccYear,
+            CVV: this.state.CVV,
+          })
       }
 
       addToCard1 = () => {
@@ -322,14 +344,24 @@ class Bot extends Component {
                             <button onClick={this._handleSignInClick}>Login</button>
                             </Jumbotron> */}
 
-                        <Jumbotron style={styles.topJumbotron}>
+                        <Jumbotron style={styles.howItWorksJumbo}>
                             <h1>How it works</h1>
-                            <p className='text-left'>Choose an item from the list below and add it to "Card 1" or "Card 2". Don't worry you do not have to use two cards. You can fire off the card 1 bot seperately from the card 2 bot.</p>
+                            <ul>
+                                <li>Choose an item from the list below and add it to "Card 1" or "Card 2". Don't worry you do not have to use two cards.</li>
+                                <li>You can fire off the card 1 bot seperately from the card 2 bot.</li>
+                                <li>Two cards are used because Supreme does not allow you to go back and keep purchasing items with the same card on that drop day.</li>
+                                <li>The bots can only take in one item a piece at this very moment. Future code will allow multiple items to be bought with the bot.</li>
+                                <li>Enter in your credit card information for bot you plan on using. If you are only using the first bot then add credit card information for that bot.</li>
+                                <li>The drop happens every Thursday at 10am Central. You will need to have all this information filled out before then so the bot will launch with all the correct information.</li>
+                                <li>Try and do this 30 mins before the drop and leave the page open so you see the bot at work.</li>
+                            </ul>
+                            {/* <p className='text-left'>Choose an item from the list below and add it to "Card 1" or "Card 2". Don't worry you do not have to use two cards.</p>
+                            <p className='text-left'>You can fire off the card 1 bot seperately from the card 2 bot.</p>
                             <p className='text-left'>Two cards are used because Supreme does not allow you to go back and keep purchasing items with the same card on that drop day.</p>
                             <p className='text-left'>The bots can only take in one item a piece at this very moment. Future code will allow multiple items to be bought with the bot.</p>
                             <p className='text-left'>Enter in your credit card information for bot you plan on using. If you are only using the first bot then add credit card information for that bot.</p>
                             <p className='text-left'>The drop happens every Thursday at 10am Central. You will need to have all this information filled out before then so the bot will launch with all the correct information.</p>
-                            <p className='text-left'>Try and do this 30 mins before the drop and leave the page open so you see the bot at work.</p>
+                            <p className='text-left'>Try and do this 30 mins before the drop and leave the page open so you see the bot at work.</p> */}
 
                             <Modal visible={this.state.visible} onClickBackdrop={this.modalBackdropClicked}>
                                 <div className="modal-header">
@@ -397,7 +429,7 @@ class Bot extends Component {
                             <h3>Bot Functions</h3>
                             <div><button type='button' class='btn btn-dark' onClick={this.bot1}>Run Bot Card#1</button></div>
                             <div><button type='button' class='btn btn-dark' onClick={this.bot2} >Run Bot Card#2</button></div>
-                            <div><button type='button' class='btn btn-dark' onClick={this.buttonTest}>Test</button></div>
+                            <div><button type='button' class='btn btn-dark' onClick={this.testBot}>Test</button></div>
                         </Jumbotron>
                     </Col>
                 </Row>

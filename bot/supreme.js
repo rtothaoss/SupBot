@@ -62,8 +62,6 @@ const supremeCard1 = async ({BASE_URL, CHECKOUT, itemList1, name, email, telepho
 
   await page.goto(CHECKOUT);
 
-  await page.waitFor(1500)
-
   await page.type('input[id="order_billing_name"]', name)
 
   await page.type('input[id="order_email"]', email)
@@ -159,6 +157,56 @@ const supremeCard2 = async () => {
 }
 
 
+const tester = async ({BASE_URL, CHECKOUT, itemList1, name, email, telephone, address, zipcode, city, cc, ccMonth, ccYear, CVV}) => {
+
+  const browser = await puppeteer.launch({ headless: false });
+
+  const page = await browser.newPage();
+
+  await page.goto(BASE_URL);
+
+  let itemSelection = await page.$x(`//a[contains(text(), "${itemList1}")]`)
+
+  await itemSelection[0].click();
+
+  await page.waitFor(700)
+
+  // await page.click(`a[data-style-name = "${itemColor}"]`)
+
+  await page.click('input[name = "commit"]')
+
+  await page.waitFor(700)
+
+  await page.goto(CHECKOUT);
+
+  await page.type('input[id="order_billing_name"]', name)
+
+  await page.type('input[id="order_email"]', email)
+
+  await page.type('input[id="order_tel"]', telephone)
+
+  await page.type('input[id="bo"]', address)
+
+  await page.type('input[id="order_billing_zip"]', zipcode)
+
+  await page.type('input[id="order_billing_city"]', city)
+
+  await page.type('input[id="nnaerb"]', cc)
+
+  await page.select('select#credit_card_month', ccMonth)
+
+  await page.select('select#credit_card_year', ccYear)
+
+  await page.type('input[id="orcer"]', CVV)
+
+  await page.click("#order_terms")
+
+  // await page.click('input[name = "commit"]')
+
+
+
+}
+
 
 
 
@@ -172,3 +220,4 @@ const supremeCard2 = async () => {
 
 module.exports.supremeCard1 = supremeCard1;
 module.exports.supremeCard2 = supremeCard2;
+module.exports.tester = tester;
