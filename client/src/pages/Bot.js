@@ -5,7 +5,7 @@ import Jumbotron from "../components/Jumbotron";
 import Card from "../components/Card";
 import API from "../utils/API";
 import Modal from 'react-bootstrap4-modal'
-import { ShirtDropdown, PantsizeDropdown, ShoeDropdown} from "../components/Dropdown";
+import { ShirtDropdown, PantsizeDropdown, ShoeDropdown } from "../components/Dropdown";
 import './botStyle.css'
 
 
@@ -41,7 +41,7 @@ const styles = {
 class Bot extends Component {
 
     state = {
-        BASE_URL: 'https://www.supremenewyork.com/shop/all/accessories',
+        BASE_URL: 'https://www.supremenewyork.com/shop/all/',
         CHECKOUT: 'https://www.supremenewyork.com/checkout',
         itemList1: 'Supreme®/Hanes® Tagless Tees (3 Pack)',
         name: '',
@@ -123,7 +123,7 @@ class Bot extends Component {
             ccYear2: this.state.ccYear2,
             CVV2: this.state.CVV2
         })
-       
+        alert('Card 2 data updated')
     };
 
 
@@ -174,48 +174,48 @@ class Bot extends Component {
     }
 
     dropDownSelection() {
-        switch(this.state.category) {
+        switch (this.state.category) {
             case 'shoes':
-            return <ShoeDropdown name="size" value={this.state.size} onChange={this.handleInputChange}></ShoeDropdown>
-            
-            
+                return <ShoeDropdown name="size" value={this.state.size} onChange={this.handleInputChange}></ShoeDropdown>
+
+
             case 'jackets':
-            return <ShirtDropdown name="size" value={this.state.size} onChange={this.handleInputChange}></ShirtDropdown>
-           
-            
+                return <ShirtDropdown name="size" value={this.state.size} onChange={this.handleInputChange}></ShirtDropdown>
+
+
             case 'sweatshirts':
-            return <ShirtDropdown name="size" value={this.state.size} onChange={this.handleInputChange}></ShirtDropdown>
-           
+                return <ShirtDropdown name="size" value={this.state.size} onChange={this.handleInputChange}></ShirtDropdown>
+
 
             case 'tops-sweaters':
-            return <ShirtDropdown name="size" value={this.state.size} onChange={this.handleInputChange}></ShirtDropdown>
-            
+                return <ShirtDropdown name="size" value={this.state.size} onChange={this.handleInputChange}></ShirtDropdown>
+
 
             case 'shirts':
-            return <ShirtDropdown name="size" value={this.state.size} onChange={this.handleInputChange}></ShirtDropdown>
-          
+                return <ShirtDropdown name="size" value={this.state.size} onChange={this.handleInputChange}></ShirtDropdown>
+
             case 'shorts':
-            return <PantsizeDropdown name="size" value={this.state.size} onChange={this.handleInputChange}></PantsizeDropdown>
-           
+                return <PantsizeDropdown name="size" value={this.state.size} onChange={this.handleInputChange}></PantsizeDropdown>
+
 
             case 'pants':
-            return <PantsizeDropdown name="size" value={this.state.size} onChange={this.handleInputChange}></PantsizeDropdown>
-            
+                return <PantsizeDropdown name="size" value={this.state.size} onChange={this.handleInputChange}></PantsizeDropdown>
+
             case 'accessories':
-            return null
+                return null
 
             case 'hats':
-            return null
+                return null
 
-            default: 
-            return null
+            default:
+                return null
 
         }
-    } 
+    }
 
     _handleNotAuthenticated = () => {
         this.setState({ authenticated: false });
-      };
+    };
 
     //   _handleSignInClick = () => {
     //     window.open("http://localhost:3002/auth/google")
@@ -224,18 +224,18 @@ class Bot extends Component {
     //     })
     //   };
 
-      _handleSignInClick = () => {
+    _handleSignInClick = () => {
         API.login()
-        .then(res => {
-            this.setState({
-                authenticated: true
+            .then(res => {
+                this.setState({
+                    authenticated: true
+                })
             })
-        })
-        .catch(() => {
-            console.log('error')
-        })
-      }
-      buttonTest = () => {
+            .catch(() => {
+                console.log('error')
+            })
+    }
+    buttonTest = () => {
         console.log(this.state.name)
         console.log(this.state.card1cart)
         console.log(this.state.categoryBot1)
@@ -243,13 +243,15 @@ class Bot extends Component {
         console.log(this.state.card2cart)
         console.log(this.state.categoryBot2)
         console.log(this.state.size2selection)
-      }
+        console.log('https://www.supremenewyork.com/shop/all/' + this.state.categoryBot1)
+        console.log('https://www.supremenewyork.com/shop/all/' + this.state.categoryBot2)
+    }
 
-      bot1 = () => {
-          API.bot1({
-            BASE_URL: 'https://www.supremenewyork.com/shop/all/accessories',
+    accessoryBot1 = () => {
+        API.accessoryBot1({
+            BASE_URL: 'https://www.supremenewyork.com/shop/all/' + this.state.categoryBot1,
             CHECKOUT: 'https://www.supremenewyork.com/checkout',
-            itemList1: 'Supreme®/Hanes® Tagless Tees (3 Pack)',
+            item1: this.state.card1cart,
             name: this.state.name,
             email: this.state.email,
             telephone: this.state.telephone,
@@ -260,36 +262,38 @@ class Bot extends Component {
             ccMonth: this.state.ccMonth,
             ccYear: this.state.ccYear,
             CVV: this.state.CVV,
-          }) 
-          .then(res => console.log('firing bot'))
-          .catch(err => console.log(err))
-      }
+        })
+            .then(res => console.log('firing bot'))
+            .catch(err => console.log(err))
+    }
 
-      bot2 = () => {
-          API.bot2({
-            BASE_URL: 'https://www.supremenewyork.com/shop/all/accessories',
+    accessoryBot2 = () => {
+        API.accessoryBot2({
+            BASE_URL: 'https://www.supremenewyork.com/shop/all/' + this.state.categoryBot2,
             CHECKOUT: 'https://www.supremenewyork.com/checkout',
-            itemList1: 'Supreme®/Hanes® Tagless Tees (3 Pack)',
-            name: 'Test Testerson Jr.',
-            email: "test@gmail.com",
-            telephone: "2142846049",
-            address: '111 Test Drive',
-            zipcode: '75075',
-            city: 'Plano',
-            cc: '1111111111111111',
-            ccMonth: '11',
-            ccYear: '2021',
-            CVV: '111',
-          })
-          .then(res => console.log('firing bot'))
-          .catch(err => console.log(err))
-      }
+            item2: this.state.card2cart,
+            name2: this.state.name2,
+            email2: this.state.email2,
+            telephone2: this.state.telephone2,
+            address2: this.state.address2,
+            zipcode2: this.state.zipcode2,
+            city2: this.state.city2,
+            cc2: this.state.cc2,
+            ccMonth2: this.state.ccMonth2,
+            ccYear2: this.state.ccYear2,
+            CVV2: this.state.CVV2,
+        })
+            .then(res => console.log('firing bot'))
+            .catch(err => console.log(err))
+    }
 
-      testBot = () => {
-          API.tester({
-            BASE_URL: 'https://www.supremenewyork.com/shop/all/accessories',
+
+
+    botWithSize1 = () => {
+        API.botWithSize1({
+            BASE_URL: 'https://www.supremenewyork.com/shop/all/' + this.state.categoryBot1,
             CHECKOUT: 'https://www.supremenewyork.com/checkout',
-            itemList1: 'Supreme®/Hanes® Tagless Tees (3 Pack)',
+            item1: this.state.card1cart,
             name: this.state.name,
             email: this.state.email,
             telephone: this.state.telephone,
@@ -300,24 +304,67 @@ class Bot extends Component {
             ccMonth: this.state.ccMonth,
             ccYear: this.state.ccYear,
             CVV: this.state.CVV,
-          })
-      }
+        })
+            .then(res => console.log('firing bot'))
+            .catch(err => console.log(err))
+    }
 
-      addToCard1 = () => {
-          console.log(this.state.title)
-          this.setState({
+
+    botWithSize2 = () => {
+        API.botWithSize2({
+            BASE_URL: 'https://www.supremenewyork.com/shop/all/' + this.state.categoryBot2,
+            CHECKOUT: 'https://www.supremenewyork.com/checkout',
+            item2: this.state.card2cart,
+            name2: this.state.name2,
+            email2: this.state.email2,
+            telephone2: this.state.telephone2,
+            address2: this.state.address2,
+            zipcode2: this.state.zipcode2,
+            city2: this.state.city2,
+            cc2: this.state.cc2,
+            ccMonth2: this.state.ccMonth2,
+            ccYear2: this.state.ccYear2,
+            CVV2: this.state.CVV2,
+        })
+            .then(res => console.log('firing bot'))
+            .catch(err => console.log(err))
+    }
+
+
+
+    testBot = () => {
+        API.tester({
+            BASE_URL: 'https://www.supremenewyork.com/shop/all/accessories',
+            CHECKOUT: 'https://www.supremenewyork.com/checkout',
+            item: 'Supreme®/Hanes® Tagless Tees (3 Pack)',
+            name: this.state.name,
+            email: this.state.email,
+            telephone: this.state.telephone,
+            address: this.state.address,
+            zipcode: this.state.zipcode,
+            city: this.state.city,
+            cc: this.state.cc,
+            ccMonth: this.state.ccMonth,
+            ccYear: this.state.ccYear,
+            CVV: this.state.CVV,
+        })
+    }
+
+    addToCard1 = () => {
+        console.log(this.state.title)
+        this.setState({
             card1cart: this.state.title,
             categoryBot1: this.state.category,
             size1selection: this.state.size
-          })
-      }
+        })
+    }
 
-      addToCard2 = () => {
+    addToCard2 = () => {
         console.log(this.state.title)
         this.setState({
-          card2cart: this.state.title,
-          categoryBot2: this.state.category,
-          size2selection: this.state.size
+            card2cart: this.state.title,
+            categoryBot2: this.state.category,
+            size2selection: this.state.size
         })
     }
 
@@ -331,6 +378,29 @@ class Bot extends Component {
         this.setState({
             card2cart: ''
         })
+    }
+
+    whichBotToFire1 = () => {
+        if(this.state.categoryBot1 === 'accessories') {
+            this.accessoryBot1()
+        } else {
+            this.botWithSize1()
+        }
+    }
+
+    whichBotToFire2 = () => {
+        if(this.state.categoryBot2 === 'accessories') {
+            this.accessoryBot2()
+        // } else if(this.state.categoryBot2 === 'tops-sweaters') {
+        //     this.setState({
+        //         categoryBot2: 'tops_sweaters'
+        //     }, ()=> {
+        //         this.botWithSize2();
+        //     })
+            
+        } else {
+            this.botWithSize2()
+        }
     }
 
 
@@ -352,7 +422,7 @@ class Bot extends Component {
                                 <li>Two cards are used because Supreme does not allow you to go back and keep purchasing items with the same card on that drop day.</li>
                                 <li>The bots can only take in one item a piece at this very moment. Future code will allow multiple items to be bought with the bot.</li>
                                 <li>Enter in your credit card information for bot you plan on using. If you are only using the first bot then add credit card information for that bot.</li>
-                                <li>The drop happens every Thursday at 10am Central. You will need to have all this information filled out before then so the bot will launch with all the correct information.</li>
+                                <li>The drop happens every <b>Thursday at 10am Central.</b> You will need to have all this information filled out before then so the bot will launch with all the correct information.</li>
                                 <li>Try and do this 30 mins before the drop and leave the page open so you see the bot at work.</li>
                             </ul>
                             {/* <p className='text-left'>Choose an item from the list below and add it to "Card 1" or "Card 2". Don't worry you do not have to use two cards.</p>
@@ -370,10 +440,10 @@ class Bot extends Component {
                                 <div className="modal-body">
                                     <img src={this.state.img} alt={this.state.title} />
 
-                                    
+
                                 </div>
                                 <div className="modal-footer">
-                                     {this.dropDownSelection()}
+                                    {this.dropDownSelection()}
                                     <button type="button" className="btn btn-primary" onClick={this.addToCard1}>
                                         Add to Card 1
                                     </button>
@@ -414,7 +484,7 @@ class Bot extends Component {
                             <br></br>
                             <br></br>
                             <br></br>
-                            <button type='button' class='btn btn-dark'  onClick={this.deleteSelectionCard1}>Delete Selection</button>
+                            <button type='button' class='btn btn-dark' onClick={this.deleteSelectionCard1}>Delete Selection</button>
                             <br></br>
                             <br></br>
                             <h3>Card 2</h3>
@@ -423,13 +493,13 @@ class Bot extends Component {
                             <br></br>
                             <br></br>
                             <br></br>
-                            <button  type='button' class='btn btn-dark' onClick={this.deleteSelectionCard2}>Delete Selection</button>
+                            <button type='button' class='btn btn-dark' onClick={this.deleteSelectionCard2}>Delete Selection</button>
                             <br></br>
                             <br></br>
                             <h3>Bot Functions</h3>
-                            <div><button type='button' class='btn btn-dark' onClick={this.bot1}>Run Bot Card#1</button></div>
-                            <div><button type='button' class='btn btn-dark' onClick={this.bot2} >Run Bot Card#2</button></div>
-                            <div><button type='button' class='btn btn-dark' onClick={this.testBot}>Test</button></div>
+                            <div><button type='button' class='btn btn-dark' onClick={this.whichBotToFire1}>Run Bot Card#1</button></div>
+                            <div><button type='button' class='btn btn-dark' onClick={this.whichBotToFire2} >Run Bot Card#2</button></div>
+                            <div><button type='button' class='btn btn-dark' onClick={this.buttonTest}>Test</button></div>
                         </Jumbotron>
                     </Col>
                 </Row>

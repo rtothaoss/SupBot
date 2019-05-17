@@ -5,21 +5,41 @@ var db = require('../models');
 const sup = require('../bot/supreme')
 
 
-router.post('/bot1',(req, res) => {
+router.post('/accessoryBot1',(req, res) => {
     
    
       sup
-      .supremeCard1(req.body)
+      .accessoryBot1(req.body)
         .then(data => {
           res.json(data)
         })
         .catch(err => res.status(500).send(err));
   })
 
-  router.post('/bot2', (req,res) => {
+  router.post('/accessoryBot2', (req,res) => {
       
       sup
-      .supremeCard2(req.body)
+      .accessoryBot2(req.body)
+      .then(data => {
+        res.json(data)
+      })
+      .catch(err => res.status(500).send(err))
+    })
+
+    router.post('/botWithSize1', (req,res) => {
+      
+      sup
+      .botWithSize1(req.body)
+      .then(data => {
+        res.json(data)
+      })
+      .catch(err => res.status(500).send(err))
+    })
+
+    router.post('/botWithSize2', (req,res) => {
+      
+      sup
+      .botWithSize2(req.body)
       .then(data => {
         res.json(data)
       })

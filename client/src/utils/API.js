@@ -29,12 +29,21 @@ export default {
   loginCallback: function() {
     return axios.get('/auth/google/callback')
   },
-  bot1: function(data) {
-    return axios.post('/bot/bot1', data)
+  accessoryBot1: function(data) {
+    return axios.post('/bot/accessoryBot1', data)
   },
-  bot2: function(data) {
-    return axios.post('/bot/bot2', data)
+  accessoryBot2: function(data) {
+    return axios.post('/bot/accessoryBot2', data)
   },
+
+  botWithSize1: function(data) {
+    return axios.post('/bot/botWithSize1', data)
+  },
+
+  botWithSize2: function(data) {
+    return axios.post('/bot/botWithSize2', data)
+  },
+
   tester: function(data) {
     return axios.post('/bot/tester', data)
   }
