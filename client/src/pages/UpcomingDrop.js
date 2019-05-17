@@ -4,6 +4,7 @@ import Card from "../components/Card";
 import { Col, Row, Container } from "../components/Grid";
 import API from "../utils/API";
 import Modal from 'react-bootstrap4-modal'
+import DateCountdown from 'react-date-countdown-timer';
 
 
 const styles = {
@@ -75,7 +76,9 @@ class UpcomingDrop extends Component {
         return (
             <Container>
                 <Jumbotron style={styles.jumbotron}>
-                <h3>Next drop in: ...</h3>
+
+                <h3>Next drop: <DateCountdown dateTo='May 23, 2019 10:00:00 GMT-04:00' /></h3>
+
                 <Modal visible={this.state.visible} onClickBackdrop={this.modalBackdropClicked}>
                         <div className="modal-header">
                             <h5 className="modal-title">{this.state.title}</h5>
