@@ -294,6 +294,7 @@ class Bot extends Component {
             BASE_URL: 'https://www.supremenewyork.com/shop/all/' + this.state.categoryBot1,
             CHECKOUT: 'https://www.supremenewyork.com/checkout',
             item1: this.state.card1cart,
+            itemSize1: this.state.size1selection,
             name: this.state.name,
             email: this.state.email,
             telephone: this.state.telephone,
@@ -315,6 +316,7 @@ class Bot extends Component {
             BASE_URL: 'https://www.supremenewyork.com/shop/all/' + this.state.categoryBot2,
             CHECKOUT: 'https://www.supremenewyork.com/checkout',
             item2: this.state.card2cart,
+            itemSize1: this.state.size2selection,
             name2: this.state.name2,
             email2: this.state.email2,
             telephone2: this.state.telephone2,
@@ -383,6 +385,12 @@ class Bot extends Component {
     whichBotToFire1 = () => {
         if(this.state.categoryBot1 === 'accessories') {
             this.accessoryBot1()
+        }  else if(this.state.categoryBot2 === 'tops-sweaters') {
+            this.setState({
+                categoryBot1: 'tops_sweaters'
+            }, ()=> {
+                this.botWithSize1();
+            })
         } else {
             this.botWithSize1()
         }
@@ -391,13 +399,12 @@ class Bot extends Component {
     whichBotToFire2 = () => {
         if(this.state.categoryBot2 === 'accessories') {
             this.accessoryBot2()
-        // } else if(this.state.categoryBot2 === 'tops-sweaters') {
-        //     this.setState({
-        //         categoryBot2: 'tops_sweaters'
-        //     }, ()=> {
-        //         this.botWithSize2();
-        //     })
-            
+        } else if(this.state.categoryBot2 === 'tops-sweaters') {
+            this.setState({
+                categoryBot2: 'tops_sweaters'
+            }, ()=> {
+                this.botWithSize2();
+            })
         } else {
             this.botWithSize2()
         }
@@ -425,13 +432,7 @@ class Bot extends Component {
                                 <li>The drop happens every <b>Thursday at 10am Central.</b> You will need to have all this information filled out before then so the bot will launch with all the correct information.</li>
                                 <li>Try and do this 30 mins before the drop and leave the page open so you see the bot at work.</li>
                             </ul>
-                            {/* <p className='text-left'>Choose an item from the list below and add it to "Card 1" or "Card 2". Don't worry you do not have to use two cards.</p>
-                            <p className='text-left'>You can fire off the card 1 bot seperately from the card 2 bot.</p>
-                            <p className='text-left'>Two cards are used because Supreme does not allow you to go back and keep purchasing items with the same card on that drop day.</p>
-                            <p className='text-left'>The bots can only take in one item a piece at this very moment. Future code will allow multiple items to be bought with the bot.</p>
-                            <p className='text-left'>Enter in your credit card information for bot you plan on using. If you are only using the first bot then add credit card information for that bot.</p>
-                            <p className='text-left'>The drop happens every Thursday at 10am Central. You will need to have all this information filled out before then so the bot will launch with all the correct information.</p>
-                            <p className='text-left'>Try and do this 30 mins before the drop and leave the page open so you see the bot at work.</p> */}
+
 
                             <Modal visible={this.state.visible} onClickBackdrop={this.modalBackdropClicked}>
                                 <div className="modal-header">

@@ -140,7 +140,7 @@ const accessoryBot2 = async ({BASE_URL, CHECKOUT, item2, name2, email2, telephon
 
 }
 
-const botWithSize1 = async ({BASE_URL, CHECKOUT, item1, name, email, telephone, address, zipcode, city, cc, ccMonth, ccYear, CVV}) => {
+const botWithSize1 = async ({BASE_URL, CHECKOUT, item1, itemSize1, name, email, telephone, address, zipcode, city, cc, ccMonth, ccYear, CVV}) => {
 
   const browser = await puppeteer.launch({ headless: false });
 
@@ -206,7 +206,7 @@ const botWithSize1 = async ({BASE_URL, CHECKOUT, item1, name, email, telephone, 
 
 }
 
-const botWithSize2 = async ({BASE_URL, CHECKOUT, item2, name2, email2, telephone2, address2, zipcode2, city2, cc2, ccMonth2, ccYear2, CVV2}) => {
+const botWithSize2 = async ({BASE_URL, CHECKOUT, item2, itemSize2, name2, email2, telephone2, address2, zipcode2, city2, cc2, ccMonth2, ccYear2, CVV2}) => {
 
   const browser = await puppeteer.launch({ headless: false });
 
@@ -229,7 +229,7 @@ const botWithSize2 = async ({BASE_URL, CHECKOUT, item2, name2, email2, telephone
     if (element) {
       let hText = await element.getProperty("text");
       let text = await hText.jsonValue();
-      if (text === `${itemSize1}`) {
+      if (text === `${itemSize2}`) {
         let hValue = await element.getProperty("value");
         let value = await hValue.jsonValue();
         await page.select("select#s", value); // or use 58730
