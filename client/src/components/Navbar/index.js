@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import './style.css'
+import '../../images/supremelogo.png'
 
 function Nav() {
   return (
@@ -48,6 +49,7 @@ function Nav() {
           </li>
         </ul>
       </div>
+      <img className="supremeImage" src={require("../../images/supremelogo.png")}/> 
     </nav>
   );
 }

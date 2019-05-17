@@ -557,25 +557,25 @@ class Bot extends Component {
                                     name="cc"
                                     value={this.state.cc}
                                     onChange={this.handleInputChange}
-                                    placeholder='cc'
+                                    placeholder='Credit Card Number'
                                 />
                                 <Input
                                     name="CVV"
                                     value={this.state.CVV}
                                     onChange={this.handleInputChange}
-                                    placeholder='CVV'
+                                    placeholder='CVV(3 digit code)'
                                 />
                                 <Input
                                     name="ccMonth"
                                     value={this.state.ccMonth}
                                     onChange={this.handleInputChange}
-                                    placeholder='ccMonth'
+                                    placeholder='Exp Month (2 digits)'
                                 />
                                 <Input
                                     name="ccYear"
                                     value={this.state.card1ccYear}
                                     onChange={this.handleInputChange}
-                                    placeholder='ccYear'
+                                    placeholder='Exp. Year (4 Digits)'
                                 />
                             </Row>
 
@@ -638,25 +638,25 @@ class Bot extends Component {
                                     name="cc2"
                                     value={this.state.cc2}
                                     onChange={this.handleInputChange}
-                                    placeholder='cc'
+                                    placeholder='Credit Card Number'
                                 />
                                 <Input
                                     name="CVV2"
                                     value={this.state.CVV2}
                                     onChange={this.handleInputChange}
-                                    placeholder='CVV'
+                                    placeholder='CVV(3 digit code)'
                                 />
                                 <Input
                                     name="ccMonth2"
                                     value={this.state.ccMonth2}
                                     onChange={this.handleInputChange}
-                                    placeholder='ccMonth'
+                                    placeholder='Exp Month (2 digits)'
                                 />
                                 <Input
                                     name="ccYear2"
                                     value={this.state.ccYear2}
                                     onChange={this.handleInputChange}
-                                    placeholder='ccYear'
+                                    placeholder='Exp. Year (4 Digits)'
                                 />
                             </Row>
 

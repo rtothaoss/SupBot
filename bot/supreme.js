@@ -322,13 +322,7 @@ const tester = async ({BASE_URL, CHECKOUT, item, name, email, telephone, address
 
 }
 
-
-
-
-// supremeCard1()
-// supremeCard2()
 // tester();
-
 
 
 module.exports.accessoryBot1 = accessoryBot1;

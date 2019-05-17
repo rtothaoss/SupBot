@@ -106,7 +106,7 @@ function droplistPage() {
 }
 
 
-const deletDrop = () => {
+const deleteDrop = () => {
   db.Droplist
   .deleteMany({})
   .then(dbModel => res.json(dbModel))
@@ -117,10 +117,10 @@ const deletDrop = () => {
 
 function runCron() {
   
-    var task = cron.schedule('0 * * * *', () =>  {
+    var task = cron.schedule('1 * * * *', () =>  {
         deleteDrop()
         scrapeSup()
-      
+      console.log('cron ran')
       }, {
         scheduled: false
       });   
