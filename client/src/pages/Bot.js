@@ -7,6 +7,8 @@ import API from "../utils/API";
 import Modal from 'react-bootstrap4-modal'
 import { ShirtDropdown, PantsizeDropdown, ShoeDropdown } from "../components/Dropdown";
 import './botStyle.css'
+import moment from 'moment-timezone';
+import Clock from 'react-live-clock';
 
 
 
@@ -80,7 +82,10 @@ class Bot extends Component {
         size1selection: '',
         size2selection: '',
         categoryBot1: '',
-        categoryBot2: ''
+        categoryBot2: '',
+        currentDate: new Date(),
+        day: '',
+        time: ''
 
     }
 
@@ -410,8 +415,14 @@ class Bot extends Component {
         }
     }
 
+ 
 
     render() {
+        const today = this.state.currentDate;
+        var time = moment(today).tz('America/New_York').format('hh:mm a z')
+        const day = moment(today).format("dddd");  
+      
+        
         return (
             <>
                 <Row>
@@ -429,7 +440,7 @@ class Bot extends Component {
                                 <li>Two cards are used because Supreme does not allow you to go back and keep purchasing items with the same card on that drop day.</li>
                                 <li>The bots can only take in one item a piece at this very moment. Future code will allow multiple items to be bought with the bot.</li>
                                 <li>Enter in your credit card information for bot you plan on using. If you are only using the first bot then add credit card information for that bot.</li>
-                                <li>The drop happens every <b>Thursday at 10am Central.</b> You will need to have all this information filled out before then so the bot will launch with all the correct information.</li>
+                                <li>The drop happens every <b>Thursday at 11am Eastern.</b> You will need to have all this information filled out before then so the bot will launch with all the correct information.</li>
                                 <li>Try and do this 30 mins before the drop and leave the page open so you see the bot at work.</li>
                             </ul>
 
@@ -480,6 +491,9 @@ class Bot extends Component {
                     <Col size="md-2">
                         <Jumbotron style={styles.checkout}>
                             <h1>Checkout</h1>
+                            
+                            {day} <Clock format={'h:mm:ss a z'} ticking={true} timezone={'US/Eastern'} />
+                            
                             <h3>Card 1</h3>
                             <p>{this.state.card1cart}</p>
                             <br></br>

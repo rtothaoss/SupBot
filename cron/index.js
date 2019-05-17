@@ -113,14 +113,17 @@ const deleteDrop = () => {
   .catch(err => res.status(422).json(err))
 }
 
+test = () => {
+  console.log('it worked')
+}
 
 
 function runCron() {
   
     var task = cron.schedule('1 * * * *', () =>  {
-        deleteDrop()
-        scrapeSup()
-      console.log('cron ran')
+        // deleteDrop()
+        // scrapeSup()
+        test()
       }, {
         scheduled: false
       });   
