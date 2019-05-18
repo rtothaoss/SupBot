@@ -16,7 +16,14 @@ router.use(
     })
   );
 
-router.use(cors({ origin: "http://localhost:3000" }))
+  //CORS
+router.use(
+  cors({
+    origin: "http://localhost:3000", // allow to server to accept request from different origin
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true // allow session cookie from browser to pass through
+  })
+);
 
 router.use(cookieParser());
 
@@ -87,7 +94,7 @@ router.get('/google', passport.authenticate('google', {
 router.get('/google/callback',
     passport.authenticate('google'),
     function (req, res) {
-        res.redirect('http://localhost:3000/bot')
+        res.redirect('http://localhost:3000/')
         console.log('done')
     });
 
