@@ -13,14 +13,6 @@ const styles = {
     }
 }
 
-const _handleSignInClick = () => {
-    API.login()
-    .then(res => console.log('logging in'))
-        .catch(err => console.log(err))
-    // this.setState({
-    //     authenticated: true
-    // })
-  };
 
 
 const About = () => {
@@ -43,9 +35,6 @@ const About = () => {
             </div>
            
         </Jumbotron>
-        <Jumbotron> 
-                            <button onClick={_handleSignInClick}>Login</button>
-                            </Jumbotron>
 
         </Container>
     )

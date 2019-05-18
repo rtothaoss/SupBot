@@ -234,14 +234,18 @@ class Bot extends Component {
 
     _handleSignInClick = () => {
         API.login()
-            .then(res => {
-                this.setState({
-                    authenticated: true
-                })
-            })
-            .catch(() => {
-                console.log('error')
-            })
+            .then(res => window.location.assign(res.request.responseURL))
+            .catch(err => console.log(err))
+        // API.login()
+        //     .then(res => {
+        //         this.setState({
+        //             authenticated: true
+        //         })
+        //     })
+        //     .catch(() => {
+        //         console.log('error')
+        //     })
+        // window.open("http://localhost:3002/auth/google")
     }
     buttonTest = () => {
         console.log(this.state.name)
