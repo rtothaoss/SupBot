@@ -223,12 +223,14 @@ class Bot extends Component {
         this.setState({ authenticated: false });
     };
 
-    //   _handleSignInClick = () => {
-    //     window.open("http://localhost:3002/auth/google")
-    //     this.setState({
-    //         authenticated: true
-    //     })
-    //   };
+      _handleSignInClick = () => {
+        API.login()
+        .then(res => console.log('logging in'))
+            .catch(err => console.log(err))
+        // this.setState({
+        //     authenticated: true
+        // })
+      };
 
     _handleSignInClick = () => {
         API.login()
@@ -428,10 +430,9 @@ class Bot extends Component {
             <>
                 <Row>
                     <Col size="md-10">
-                        {/* <Jumbotron> 
-                        {this.state.authenticated ? (console.log(this.state.authenticated)) : (console.log(this.state.authenticated))}
+                        <Jumbotron> 
                             <button onClick={this._handleSignInClick}>Login</button>
-                            </Jumbotron> */}
+                            </Jumbotron>
 
                         <Jumbotron style={styles.howItWorksJumbo}>
                             <h1>How it works</h1>

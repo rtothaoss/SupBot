@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const app = express();
 // var cron = require('node-cron');
 var cronScrape = require('./cron/index')
+// const cors = require("cors");
 
 
 
@@ -19,7 +20,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-
+app.use(cors({ origin: "http://localhost:3000" }))
 app.use(routes);
 
 // var task = cron.schedule('* * * * *', () =>  {

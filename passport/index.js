@@ -5,16 +5,18 @@ const keys = require('../config/keys')
 var db = require('../models');
 const cookieSession = require("cookie-session");
 const cookieParser = require("cookie-parser");
-
+const cors = require("cors");
 
 
 router.use(
     cookieSession({
       name: "session",
       keys: [keys.COOKIE_KEY],
-      maxAge: 24 * 60 * 60 * 100
+      maxAge: 2 * 60 * 60 
     })
   );
+
+router.use(cors({ origin: "http://localhost:3000" }))
 
 router.use(cookieParser());
 

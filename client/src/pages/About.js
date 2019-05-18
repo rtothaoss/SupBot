@@ -3,6 +3,7 @@ import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 import './aboutStyle.css'
 import '../images/supremelogo.png'
+import API from "../utils/API";
 
 const styles = {
     background: {
@@ -11,6 +12,15 @@ const styles = {
         color: "black"
     }
 }
+
+const _handleSignInClick = () => {
+    API.login()
+    .then(res => console.log('logging in'))
+        .catch(err => console.log(err))
+    // this.setState({
+    //     authenticated: true
+    // })
+  };
 
 
 const About = () => {
@@ -33,6 +43,9 @@ const About = () => {
             </div>
            
         </Jumbotron>
+        <Jumbotron> 
+                            <button onClick={_handleSignInClick}>Login</button>
+                            </Jumbotron>
 
         </Container>
     )
