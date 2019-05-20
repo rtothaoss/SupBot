@@ -10,7 +10,7 @@ Everyone wants Supreme but only a few can successfully get the items they want. 
 
 Clone the project then be sure to install the package dependencies.
 
-> npm install
+``` npm install ```
 
 Note: Puppeteer installs with Chromium. You may use a core version of puppeteer that does not install with Chromium but the bots code would need to be refactored to use a browser of your choice when it launches.
 
@@ -18,13 +18,13 @@ Note: Puppeteer installs with Chromium. You may use a core version of puppeteer 
 
 You may choose to start up the app by using 
 
-> npm start
+``` npm start ```
 
 Be sure to run this on the express side of the app. If you run this on the react side of the app it will not run correctly.
 
 You can also choose to execute bot file by itself if you so wish. Just be sure to uncomment all the necessary items used for card information and item choice. 
 
-> node supreme.js
+``` node supreme.js ```
 
 If you would like to improve this bot you can view Puppeteer documentation here [Puppeteer Docs](https://github.com/GoogleChrome/puppeteer/blob/v1.16.0/docs/api.md)
 
