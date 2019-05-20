@@ -1,5 +1,5 @@
 # SupBot
-* An app that allows you to secure items that are about to drop on Supremes website with the use of Puppeteer
+*An app that allows you to secure items that are about to drop on Supremes website with the use of Puppeteer.*
 
 Deployed Page: 
 
@@ -16,7 +16,7 @@ Note: Puppeteer installs with Chromium. You may use a core version of puppeteer 
 
 #### Usage
 
-You may choose to start up the app by using 
+Start up the app by using
 
 ``` npm start ```
 
@@ -41,6 +41,7 @@ If you would like to improve this bot you can view Puppeteer documentation here 
 * Puppeteer
 * Moment.js
 * CRON
+* Formspree(email service)
 * MongoDB
 * Mongoose
 * Express

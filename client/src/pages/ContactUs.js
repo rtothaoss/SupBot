@@ -16,7 +16,8 @@ class ContactUs extends Component {
         name: '',
         email: '',
         text: '',
-        data: ''
+        data: '',
+        "_replyto": ''
     }
 
     handleInputChange = event => {
@@ -46,7 +47,9 @@ render() {
     return (
         <Container>
             <Jumbotron style={style.jumbotron}>
+            <form action="https://formspree.io/rtothaoss@gmail.com" method="POST">
                 <Input 
+                    type = 'text'
                     name = "name"
                     value = {this.state.name}
                     onChange = {this.handleInputChange}
@@ -54,8 +57,9 @@ render() {
                 />
 
                 <Input 
-                     name = "email"
-                    value = {this.state.email}
+                    type = 'email'
+                    name = "_replyto"
+                    value = {this.state._replyto}
                     onChange = {this.handleInputChange}
                     placeholder = 'Email'
                 />
@@ -68,10 +72,12 @@ render() {
                 />
 
                 <FormBtn
-                    onClick = {this.handleFormSubmit}
-                    type='success'
-                 >Search
+                    // onClick = {this.handleFormSubmit}
+                    type='submit'
+                    value='Send'
+                 >Submit
                  </FormBtn>
+                 </form>
 
             </Jumbotron>
         </Container>
