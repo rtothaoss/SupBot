@@ -26,9 +26,6 @@ export default {
   login: function() {
     return axios.get('/auth/google')
   },
-  loginCallback: function() {
-    return axios.get('/auth/google/callback')
-  },
   accessoryBot1: function(data) {
     return axios.post('/bot/accessoryBot1', data)
   },

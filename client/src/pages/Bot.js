@@ -76,6 +76,7 @@ class Bot extends Component {
         img: '',
         category: '',
         authenticated: false,
+        error: null,
         user: {},
         card1cart: '',
         card2cart: '',
@@ -134,8 +135,12 @@ class Bot extends Component {
 
 
     componentDidMount() {
+        // API.login()
+        // .then(res => window.location.assign(res.request.responseURL))
+        // .catch(err => console.log(err))
         this.droplistLoaded();
-    }
+        }
+    
 
     droplistLoaded = () => {
         API.loadDroplist()
@@ -223,40 +228,15 @@ class Bot extends Component {
         this.setState({ authenticated: false });
     };
 
-      _handleSignInClick = () => {
-        API.login()
-        .then(res => console.log('logging in'))
-            .catch(err => console.log(err))
-        // this.setState({
-        //     authenticated: true
-        // })
-      };
 
     _handleSignInClick = () => {
         API.login()
             .then(res => window.location.assign(res.request.responseURL))
             .catch(err => console.log(err))
-        // API.login()
-        //     .then(res => {
-        //         this.setState({
-        //             authenticated: true
-        //         })
-        //     })
-        //     .catch(() => {
-        //         console.log('error')
-        //     })
-        // window.open("http://localhost:3002/auth/google")
     }
+
     buttonTest = () => {
-        console.log(this.state.name)
-        console.log(this.state.card1cart)
-        console.log(this.state.categoryBot1)
-        console.log(this.state.size1selection)
-        console.log(this.state.card2cart)
-        console.log(this.state.categoryBot2)
-        console.log(this.state.size2selection)
-        console.log('https://www.supremenewyork.com/shop/all/' + this.state.categoryBot1)
-        console.log('https://www.supremenewyork.com/shop/all/' + this.state.categoryBot2)
+     
     }
 
     accessoryBot1 = () => {
@@ -520,7 +500,7 @@ class Bot extends Component {
                             <h3>Bot Functions</h3>
                             <div><button type='button' class='btn btn-dark' onClick={this.whichBotToFire1}>Run Bot Card#1</button></div>
                             <div><button type='button' class='btn btn-dark' onClick={this.whichBotToFire2} >Run Bot Card#2</button></div>
-                            <div><button type='button' class='btn btn-dark' onClick={this.buttonTest}>Test</button></div>
+                            <div><button type='button' class='btn btn-dark' onClick={this.testBot}>Test</button></div>
                         </Jumbotron>
                     </Col>
                 </Row>
