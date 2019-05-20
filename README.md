@@ -1,5 +1,5 @@
 # SupBot
-*An app that allows you to secure items that are about to drop on Supremes website with the use of Puppeteer
+* An app that allows you to secure items that are about to drop on Supremes website with the use of Puppeteer
 
 Deployed Page: 
 
@@ -28,7 +28,7 @@ You can also choose to execute bot file by itself if you so wish. Just be sure t
 
 If you would like to improve this bot you can view Puppeteer documentation here [Puppeteer Docs](https://github.com/GoogleChrome/puppeteer/blob/v1.16.0/docs/api.md)
 
-##### Also if you would have any ideas or would like to contribute to this project feel free to.
+##### Also if you have any ideas or would like to contribute to this project feel free to.
 
 #### Future updates:
 * The ability to add multiples items to each card.
