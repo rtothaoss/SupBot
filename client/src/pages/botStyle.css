@@ -6,3 +6,13 @@
   width: 300px;
   height: 100px
 } */
+
+.ccUserInfo {
+  width: 340px;
+  margin-left: 15px;
+  height: 40px
+}
+
+input:placeholder-shown {
+  padding-left: 10px;
+}

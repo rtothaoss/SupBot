@@ -408,15 +408,17 @@ class Bot extends Component {
         const today = this.state.currentDate;
         var time = moment(today).tz('America/New_York').format('hh:mm a z')
         const day = moment(today).format("dddd");  
+
+
       
         
         return (
             <>
                 <Row>
                     <Col size="md-10">
-                        <Jumbotron> 
+                        {/* <Jumbotron> 
                             <button onClick={this._handleSignInClick}>Login</button>
-                            </Jumbotron>
+                            </Jumbotron> */}
 
                         <Jumbotron style={styles.howItWorksJumbo}>
                             <h1>How it works</h1>
@@ -480,7 +482,7 @@ class Bot extends Component {
                             
                             {day} <Clock format={'h:mm:ss a z'} ticking={true} timezone={'US/Eastern'} />
                             
-                            <h3>Card 1</h3>
+                            <h3><u>Card 1</u></h3>
                             <p>{this.state.card1cart}</p>
                             <br></br>
                             <br></br>
@@ -488,19 +490,19 @@ class Bot extends Component {
                             <button type='button' class='btn btn-dark' onClick={this.deleteSelectionCard1}>Delete Selection</button>
                             <br></br>
                             <br></br>
-                            <h3>Card 2</h3>
+                            <h3><u>Card 2</u></h3>
                             <p>{this.state.card2cart}</p>
                             <br></br>
                             <br></br>
                             <br></br>
                             <br></br>
                             <button type='button' class='btn btn-dark' onClick={this.deleteSelectionCard2}>Delete Selection</button>
-                            <br></br>
-                            <br></br>
-                            <h3>Bot Functions</h3>
+                            </Jumbotron>
+                            <Jumbotron style={styles.checkout}>
+                            <h1>Bot Functions</h1>
                             <div><button type='button' class='btn btn-dark' onClick={this.whichBotToFire1}>Run Bot Card#1</button></div>
                             <div><button type='button' class='btn btn-dark' onClick={this.whichBotToFire2} >Run Bot Card#2</button></div>
-                            <div><button type='button' class='btn btn-dark' onClick={this.testBot}>Test</button></div>
+                            <div><button type='button' class='btn btn-dark' onClick={this.testBot}>Test Bot #1</button></div>
                         </Jumbotron>
                     </Col>
                 </Row>
@@ -508,9 +510,10 @@ class Bot extends Component {
                     <Col size='md-5'>
                         <Jumbotron style={styles.jumbotron}>
                             <h1>CC#1 info here</h1>
-                            <p>Collapsible</p>
+                           
                             <Row>
                                 <Input
+                                    className = 'ccUserInfo'
                                     name="name"
                                     value={this.state.name}
                                     onChange={this.handleInputChange}
@@ -518,34 +521,37 @@ class Bot extends Component {
                                 />
 
                                 <Input
+                                    className = 'ccUserInfo'
                                     name="email"
                                     value={this.state.email}
                                     onChange={this.handleInputChange}
                                     placeholder='Email'
                                 />
-
+                            
                                 <Input
+                                    className = 'ccUserInfo'
                                     name="telephone"
                                     value={this.state.telephone}
                                     onChange={this.handleInputChange}
                                     placeholder='Telephone'
                                 />
-                            </Row>
-                            <Row>
+                                </Row>
                                 <Input
                                     name="address"
                                     value={this.state.address}
                                     onChange={this.handleInputChange}
                                     placeholder='Address'
                                 />
-
+                            <Row>
                                 <Input
+                                className = 'ccUserInfo'
                                     name="zipcode"
                                     value={this.state.zipcode}
                                     onChange={this.handleInputChange}
                                     placeholder='Zipcode'
                                 />
                                 <Input
+                                className = 'ccUserInfo'
                                     name="city"
                                     value={this.state.city}
                                     onChange={this.handleInputChange}
@@ -554,31 +560,36 @@ class Bot extends Component {
                             </Row>
                             <Row>
                                 <Input
+                                    className = 'ccUserInfo'
                                     name="cc"
                                     value={this.state.cc}
                                     onChange={this.handleInputChange}
                                     placeholder='Credit Card Number'
                                 />
                                 <Input
+                                    className = 'ccUserInfo'
                                     name="CVV"
                                     value={this.state.CVV}
                                     onChange={this.handleInputChange}
                                     placeholder='CVV(3 digit code)'
                                 />
+                            </Row>
+                            <Row>
                                 <Input
+                                    className = 'ccUserInfo'
                                     name="ccMonth"
                                     value={this.state.ccMonth}
                                     onChange={this.handleInputChange}
                                     placeholder='Exp Month (2 digits)'
                                 />
                                 <Input
+                                    className = 'ccUserInfo'
                                     name="ccYear"
                                     value={this.state.card1ccYear}
                                     onChange={this.handleInputChange}
                                     placeholder='Exp. Year (4 Digits)'
                                 />
-                            </Row>
-
+                           </Row>
                             <FormBtn
                                 onClick={this.handleFormSubmitCard1}
                                 type='success'
@@ -589,9 +600,10 @@ class Bot extends Component {
                     <Col size='md-5'>
                         <Jumbotron style={styles.jumbotron}>
                             <h1>CC#2 info here</h1>
-                            <p>Collapsible</p>
+                            
                             <Row>
                                 <Input
+                                    className = 'ccUserInfo'
                                     name="name2"
                                     value={this.state.name2}
                                     onChange={this.handleInputChange}
@@ -599,6 +611,7 @@ class Bot extends Component {
                                 />
 
                                 <Input
+                                    className = 'ccUserInfo'
                                     name="email2"
                                     value={this.state.email2}
                                     onChange={this.handleInputChange}
@@ -606,27 +619,29 @@ class Bot extends Component {
                                 />
 
                                 <Input
+                                    className = 'ccUserInfo'
                                     name="telephone2"
                                     value={this.state.telephone2}
                                     onChange={this.handleInputChange}
                                     placeholder='Telephone'
                                 />
                             </Row>
-                            <Row>
                                 <Input
                                     name="address2"
                                     value={this.state.address2}
                                     onChange={this.handleInputChange}
                                     placeholder='Address'
                                 />
-
+                            <Row>
                                 <Input
+                                    className = 'ccUserInfo'
                                     name="zipcode2"
                                     value={this.state.zipcode2}
                                     onChange={this.handleInputChange}
                                     placeholder='Zipcode'
                                 />
                                 <Input
+                                    className = 'ccUserInfo'
                                     name="city2"
                                     value={this.state.city2}
                                     onChange={this.handleInputChange}
@@ -635,24 +650,30 @@ class Bot extends Component {
                             </Row>
                             <Row>
                                 <Input
+                                    className = 'ccUserInfo'
                                     name="cc2"
                                     value={this.state.cc2}
                                     onChange={this.handleInputChange}
                                     placeholder='Credit Card Number'
                                 />
                                 <Input
+                                    className = 'ccUserInfo'
                                     name="CVV2"
                                     value={this.state.CVV2}
                                     onChange={this.handleInputChange}
                                     placeholder='CVV(3 digit code)'
                                 />
+                            </Row>
+                            <Row>
                                 <Input
+                                    className = 'ccUserInfo'
                                     name="ccMonth2"
                                     value={this.state.ccMonth2}
                                     onChange={this.handleInputChange}
                                     placeholder='Exp Month (2 digits)'
                                 />
                                 <Input
+                                    className = 'ccUserInfo'
                                     name="ccYear2"
                                     value={this.state.ccYear2}
                                     onChange={this.handleInputChange}

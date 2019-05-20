@@ -1,4 +1,5 @@
 # SupBot
+(Supreme Bot)
 *An app that allows you to secure items that are about to drop on Supremes website with the use of Puppeteer.*
 
 Deployed Page: 

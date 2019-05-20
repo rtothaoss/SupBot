@@ -2,10 +2,13 @@ import React, {Component} from 'react'
 import Jumbotron from "../components/Jumbotron";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, TextArea, FormBtn } from "../components/Form";
+import './contactusStyle.css'
 
 const style = {
     jumbotron: {
-        marginTop: "40px"
+        width: '500px',
+        margin: '0 auto',
+        marginTop: "40px",
     }
 }
 
@@ -49,6 +52,7 @@ render() {
             <Jumbotron style={style.jumbotron}>
             <form action="https://formspree.io/rtothaoss@gmail.com" method="POST">
                 <Input 
+                    // className = 'nameArea'
                     type = 'text'
                     name = "name"
                     value = {this.state.name}
@@ -57,6 +61,7 @@ render() {
                 />
 
                 <Input 
+                    // className = 'emailArea'
                     type = 'email'
                     name = "_replyto"
                     value = {this.state._replyto}
@@ -65,10 +70,11 @@ render() {
                 />
 
                 <TextArea 
+                    // className = 'textArea'
                      name = "text"
                     value = {this.state.text}
                     onChange = {this.handleInputChange}
-                    placeholder = 'Drop your question here'
+                    placeholder = 'Drop Your Question Here'
                 />
 
                 <FormBtn
