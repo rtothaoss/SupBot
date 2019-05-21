@@ -2,6 +2,7 @@ var cron = require('node-cron');
 const router = require("express").Router();
 var cheerio = require("cheerio");
 var db = require('../models');
+const sup = require('../bot/supreme')
 
 const axios = require("axios");
 
@@ -120,10 +121,10 @@ test = () => {
 
 function runCron() {
   
-    var task = cron.schedule('1 * * * *', () =>  {
+    var task = cron.schedule('* * * * *', () =>  {
         // deleteDrop()
         // scrapeSup()
-        test()
+        // test()
       }, {
         scheduled: false
       });   

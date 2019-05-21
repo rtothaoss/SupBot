@@ -9,6 +9,7 @@ import { ShirtDropdown, PantsizeDropdown, ShoeDropdown } from "../components/Dro
 import './botStyle.css'
 import moment from 'moment-timezone';
 import Clock from 'react-live-clock';
+var cron = require('node-cron');
 
 
 
@@ -139,8 +140,8 @@ class Bot extends Component {
         // .then(res => window.location.assign(res.request.responseURL))
         // .catch(err => console.log(err))
         this.droplistLoaded();
-        }
-    
+    }
+
 
     droplistLoaded = () => {
         API.loadDroplist()
@@ -236,112 +237,142 @@ class Bot extends Component {
     }
 
     buttonTest = () => {
-     
+
     }
 
     accessoryBot1 = () => {
-        API.accessoryBot1({
-            BASE_URL: 'https://www.supremenewyork.com/shop/all/' + this.state.categoryBot1,
-            CHECKOUT: 'https://www.supremenewyork.com/checkout',
-            item1: this.state.card1cart,
-            name: this.state.name,
-            email: this.state.email,
-            telephone: this.state.telephone,
-            address: this.state.address,
-            zipcode: this.state.zipcode,
-            city: this.state.city,
-            cc: this.state.cc,
-            ccMonth: this.state.ccMonth,
-            ccYear: this.state.ccYear,
-            CVV: this.state.CVV,
-        })
-            .then(res => console.log('firing bot'))
-            .catch(err => console.log(err))
+        alert('Bot activated! Please do not press again until the drop.')
+        var task = cron.schedule('1 0 10 * * 4', () =>  {
+            API.accessoryBot1({
+                BASE_URL: 'https://www.supremenewyork.com/shop/all/' + this.state.categoryBot1,
+                CHECKOUT: 'https://www.supremenewyork.com/checkout',
+                item1: this.state.card1cart,
+                name: this.state.name,
+                email: this.state.email,
+                telephone: this.state.telephone,
+                address: this.state.address,
+                zipcode: this.state.zipcode,
+                city: this.state.city,
+                cc: this.state.cc,
+                ccMonth: this.state.ccMonth,
+                ccYear: this.state.ccYear,
+                CVV: this.state.CVV,
+            })
+                .then(res => console.log('firing bot'))
+                .catch(err => console.log(err))
+          }, {
+            scheduled: false
+          });   
+          task.start();
+    
     }
 
     accessoryBot2 = () => {
-        API.accessoryBot2({
-            BASE_URL: 'https://www.supremenewyork.com/shop/all/' + this.state.categoryBot2,
-            CHECKOUT: 'https://www.supremenewyork.com/checkout',
-            item2: this.state.card2cart,
-            name2: this.state.name2,
-            email2: this.state.email2,
-            telephone2: this.state.telephone2,
-            address2: this.state.address2,
-            zipcode2: this.state.zipcode2,
-            city2: this.state.city2,
-            cc2: this.state.cc2,
-            ccMonth2: this.state.ccMonth2,
-            ccYear2: this.state.ccYear2,
-            CVV2: this.state.CVV2,
-        })
-            .then(res => console.log('firing bot'))
-            .catch(err => console.log(err))
+        alert('Bot activated! Please do not press again until the drop.')
+        var task = cron.schedule('1 0 10 * * 4', () =>  {
+            API.accessoryBot2({
+                BASE_URL: 'https://www.supremenewyork.com/shop/all/' + this.state.categoryBot2,
+                CHECKOUT: 'https://www.supremenewyork.com/checkout',
+                item2: this.state.card2cart,
+                name2: this.state.name2,
+                email2: this.state.email2,
+                telephone2: this.state.telephone2,
+                address2: this.state.address2,
+                zipcode2: this.state.zipcode2,
+                city2: this.state.city2,
+                cc2: this.state.cc2,
+                ccMonth2: this.state.ccMonth2,
+                ccYear2: this.state.ccYear2,
+                CVV2: this.state.CVV2,
+            })
+                .then(res => console.log('firing bot'))
+                .catch(err => console.log(err))
+          }, {
+            scheduled: false
+          });   
+          task.start();
     }
 
 
 
     botWithSize1 = () => {
-        API.botWithSize1({
-            BASE_URL: 'https://www.supremenewyork.com/shop/all/' + this.state.categoryBot1,
-            CHECKOUT: 'https://www.supremenewyork.com/checkout',
-            item1: this.state.card1cart,
-            itemSize1: this.state.size1selection,
-            name: this.state.name,
-            email: this.state.email,
-            telephone: this.state.telephone,
-            address: this.state.address,
-            zipcode: this.state.zipcode,
-            city: this.state.city,
-            cc: this.state.cc,
-            ccMonth: this.state.ccMonth,
-            ccYear: this.state.ccYear,
-            CVV: this.state.CVV,
-        })
-            .then(res => console.log('firing bot'))
-            .catch(err => console.log(err))
+        alert('Bot activated! Please do not press again until the drop.')
+        var task = cron.schedule('1 0 10 * * 4', () =>  {
+            API.botWithSize1({
+                BASE_URL: 'https://www.supremenewyork.com/shop/all/' + this.state.categoryBot1,
+                CHECKOUT: 'https://www.supremenewyork.com/checkout',
+                item1: this.state.card1cart,
+                itemSize1: this.state.size1selection,
+                name: this.state.name,
+                email: this.state.email,
+                telephone: this.state.telephone,
+                address: this.state.address,
+                zipcode: this.state.zipcode,
+                city: this.state.city,
+                cc: this.state.cc,
+                ccMonth: this.state.ccMonth,
+                ccYear: this.state.ccYear,
+                CVV: this.state.CVV,
+            })
+                .then(res => console.log('firing bot'))
+                .catch(err => console.log(err))
+          }, {
+            scheduled: false
+          });   
+          task.start();
     }
 
 
     botWithSize2 = () => {
-        API.botWithSize2({
-            BASE_URL: 'https://www.supremenewyork.com/shop/all/' + this.state.categoryBot2,
-            CHECKOUT: 'https://www.supremenewyork.com/checkout',
-            item2: this.state.card2cart,
-            itemSize1: this.state.size2selection,
-            name2: this.state.name2,
-            email2: this.state.email2,
-            telephone2: this.state.telephone2,
-            address2: this.state.address2,
-            zipcode2: this.state.zipcode2,
-            city2: this.state.city2,
-            cc2: this.state.cc2,
-            ccMonth2: this.state.ccMonth2,
-            ccYear2: this.state.ccYear2,
-            CVV2: this.state.CVV2,
-        })
-            .then(res => console.log('firing bot'))
-            .catch(err => console.log(err))
+        alert('Bot activated! Please do not press again until the drop.')
+
+        var task = cron.schedule('1 0 10 * * 4', () => {
+            API.botWithSize2({
+                BASE_URL: 'https://www.supremenewyork.com/shop/all/' + this.state.categoryBot2,
+                CHECKOUT: 'https://www.supremenewyork.com/checkout',
+                item2: this.state.card2cart,
+                itemSize1: this.state.size2selection,
+                name2: this.state.name2,
+                email2: this.state.email2,
+                telephone2: this.state.telephone2,
+                address2: this.state.address2,
+                zipcode2: this.state.zipcode2,
+                city2: this.state.city2,
+                cc2: this.state.cc2,
+                ccMonth2: this.state.ccMonth2,
+                ccYear2: this.state.ccYear2,
+                CVV2: this.state.CVV2,
+            })
+                .then(res => console.log('firing bot'))
+                .catch(err => console.log(err))
+        }, {
+                scheduled: false
+            });
+        task.start();
+
     }
 
 
 
     testBot = () => {
-        API.tester({
-            BASE_URL: 'https://www.supremenewyork.com/shop/all/accessories',
-            CHECKOUT: 'https://www.supremenewyork.com/checkout',
-            item: 'Supreme®/Hanes® Tagless Tees (3 Pack)',
-            name: this.state.name,
-            email: this.state.email,
-            telephone: this.state.telephone,
-            address: this.state.address,
-            zipcode: this.state.zipcode,
-            city: this.state.city,
-            cc: this.state.cc,
-            ccMonth: this.state.ccMonth,
-            ccYear: this.state.ccYear,
-            CVV: this.state.CVV,
-        })
+
+       
+            API.tester({
+                BASE_URL: 'https://www.supremenewyork.com/shop/all/accessories',
+                CHECKOUT: 'https://www.supremenewyork.com/checkout',
+                item: 'Supreme®/Hanes® Tagless Tees (3 Pack)',
+                name: this.state.name,
+                email: this.state.email,
+                telephone: this.state.telephone,
+                address: this.state.address,
+                zipcode: this.state.zipcode,
+                city: this.state.city,
+                cc: this.state.cc,
+                ccMonth: this.state.ccMonth,
+                ccYear: this.state.ccYear,
+                CVV: this.state.CVV,
+            })
+    
     }
 
     addToCard1 = () => {
@@ -375,43 +406,47 @@ class Bot extends Component {
     }
 
     whichBotToFire1 = () => {
-        if(this.state.categoryBot1 === 'accessories') {
+        if (this.state.categoryBot1 === 'accessories') {
             this.accessoryBot1()
-        }  else if(this.state.categoryBot2 === 'tops-sweaters') {
+        } else if (this.state.categoryBot1 === 'tops-sweaters') {
             this.setState({
                 categoryBot1: 'tops_sweaters'
-            }, ()=> {
+            }, () => {
                 this.botWithSize1();
             })
+        } else if (this.state.categoryBot1 === 'bags') {
+            this.accessoryBot1()
         } else {
             this.botWithSize1()
         }
     }
 
     whichBotToFire2 = () => {
-        if(this.state.categoryBot2 === 'accessories') {
+        if (this.state.categoryBot2 === 'accessories') {
             this.accessoryBot2()
-        } else if(this.state.categoryBot2 === 'tops-sweaters') {
+        } else if (this.state.categoryBot2 === 'tops-sweaters') {
             this.setState({
                 categoryBot2: 'tops_sweaters'
-            }, ()=> {
+            }, () => {
                 this.botWithSize2();
             })
+        } else if (this.state.categoryBot2 === 'bags') {
+            this.accessoryBot1()
         } else {
             this.botWithSize2()
         }
     }
 
- 
+
 
     render() {
         const today = this.state.currentDate;
         var time = moment(today).tz('America/New_York').format('hh:mm a z')
-        const day = moment(today).format("dddd");  
+        const day = moment(today).format("dddd");
 
 
-      
-        
+
+
         return (
             <>
                 <Row>
@@ -479,15 +514,15 @@ class Bot extends Component {
                     <Col size="md-2">
                         <Jumbotron style={styles.checkout}>
                             <h1>Checkout</h1>
-                            
+
                             {day} <Clock format={'h:mm:ss a z'} ticking={true} timezone={'US/Eastern'} />
-                            
+
                             <h3><u>Card 1</u></h3>
                             <p>{this.state.card1cart}</p>
                             <br></br>
                             <br></br>
                             <br></br>
-                            <button type='button' class='btn btn-dark' onClick={this.deleteSelectionCard1}>Delete Selection</button>
+                            <button type='button' className='btn btn-dark' onClick={this.deleteSelectionCard1}>Delete Selection</button>
                             <br></br>
                             <br></br>
                             <h3><u>Card 2</u></h3>
@@ -496,13 +531,13 @@ class Bot extends Component {
                             <br></br>
                             <br></br>
                             <br></br>
-                            <button type='button' class='btn btn-dark' onClick={this.deleteSelectionCard2}>Delete Selection</button>
-                            </Jumbotron>
-                            <Jumbotron style={styles.checkout}>
+                            <button type='button' className='btn btn-dark' onClick={this.deleteSelectionCard2}>Delete Selection</button>
+                        </Jumbotron>
+                        <Jumbotron style={styles.checkout}>
                             <h1>Bot Functions</h1>
-                            <div><button type='button' class='btn btn-dark' onClick={this.whichBotToFire1}>Run Bot Card#1</button></div>
-                            <div><button type='button' class='btn btn-dark' onClick={this.whichBotToFire2} >Run Bot Card#2</button></div>
-                            <div><button type='button' class='btn btn-dark' onClick={this.testBot}>Test Bot #1</button></div>
+                            <div><button type='button' className='btn btn-dark' onClick={this.whichBotToFire1}>Run Bot Card#1</button></div>
+                            <div><button type='button' className='btn btn-dark' onClick={this.whichBotToFire2} >Run Bot Card#2</button></div>
+                            <div><button type='button' className='btn btn-dark' onClick={this.testBot}>Test Bot #1</button></div>
                         </Jumbotron>
                     </Col>
                 </Row>
@@ -510,10 +545,10 @@ class Bot extends Component {
                     <Col size='md-5'>
                         <Jumbotron style={styles.jumbotron}>
                             <h1>CC#1 info here</h1>
-                           
+
                             <Row>
                                 <Input
-                                    className = 'ccUserInfo'
+                                    className='ccUserInfo'
                                     name="name"
                                     value={this.state.name}
                                     onChange={this.handleInputChange}
@@ -521,37 +556,37 @@ class Bot extends Component {
                                 />
 
                                 <Input
-                                    className = 'ccUserInfo'
+                                    className='ccUserInfo'
                                     name="email"
                                     value={this.state.email}
                                     onChange={this.handleInputChange}
                                     placeholder='Email'
                                 />
-                            
+
                                 <Input
-                                    className = 'ccUserInfo'
+                                    className='ccUserInfo'
                                     name="telephone"
                                     value={this.state.telephone}
                                     onChange={this.handleInputChange}
                                     placeholder='Telephone'
                                 />
-                                </Row>
-                                <Input
-                                    name="address"
-                                    value={this.state.address}
-                                    onChange={this.handleInputChange}
-                                    placeholder='Address'
-                                />
+                            </Row>
+                            <Input
+                                name="address"
+                                value={this.state.address}
+                                onChange={this.handleInputChange}
+                                placeholder='Address'
+                            />
                             <Row>
                                 <Input
-                                className = 'ccUserInfo'
+                                    className='ccUserInfo'
                                     name="zipcode"
                                     value={this.state.zipcode}
                                     onChange={this.handleInputChange}
                                     placeholder='Zipcode'
                                 />
                                 <Input
-                                className = 'ccUserInfo'
+                                    className='ccUserInfo'
                                     name="city"
                                     value={this.state.city}
                                     onChange={this.handleInputChange}
@@ -560,14 +595,14 @@ class Bot extends Component {
                             </Row>
                             <Row>
                                 <Input
-                                    className = 'ccUserInfo'
+                                    className='ccUserInfo'
                                     name="cc"
                                     value={this.state.cc}
                                     onChange={this.handleInputChange}
                                     placeholder='Credit Card Number'
                                 />
                                 <Input
-                                    className = 'ccUserInfo'
+                                    className='ccUserInfo'
                                     name="CVV"
                                     value={this.state.CVV}
                                     onChange={this.handleInputChange}
@@ -576,20 +611,20 @@ class Bot extends Component {
                             </Row>
                             <Row>
                                 <Input
-                                    className = 'ccUserInfo'
+                                    className='ccUserInfo'
                                     name="ccMonth"
                                     value={this.state.ccMonth}
                                     onChange={this.handleInputChange}
                                     placeholder='Exp Month (2 digits)'
                                 />
                                 <Input
-                                    className = 'ccUserInfo'
+                                    className='ccUserInfo'
                                     name="ccYear"
                                     value={this.state.card1ccYear}
                                     onChange={this.handleInputChange}
                                     placeholder='Exp. Year (4 Digits)'
                                 />
-                           </Row>
+                            </Row>
                             <FormBtn
                                 onClick={this.handleFormSubmitCard1}
                                 type='success'
@@ -600,10 +635,10 @@ class Bot extends Component {
                     <Col size='md-5'>
                         <Jumbotron style={styles.jumbotron}>
                             <h1>CC#2 info here</h1>
-                            
+
                             <Row>
                                 <Input
-                                    className = 'ccUserInfo'
+                                    className='ccUserInfo'
                                     name="name2"
                                     value={this.state.name2}
                                     onChange={this.handleInputChange}
@@ -611,7 +646,7 @@ class Bot extends Component {
                                 />
 
                                 <Input
-                                    className = 'ccUserInfo'
+                                    className='ccUserInfo'
                                     name="email2"
                                     value={this.state.email2}
                                     onChange={this.handleInputChange}
@@ -619,29 +654,29 @@ class Bot extends Component {
                                 />
 
                                 <Input
-                                    className = 'ccUserInfo'
+                                    className='ccUserInfo'
                                     name="telephone2"
                                     value={this.state.telephone2}
                                     onChange={this.handleInputChange}
                                     placeholder='Telephone'
                                 />
                             </Row>
-                                <Input
-                                    name="address2"
-                                    value={this.state.address2}
-                                    onChange={this.handleInputChange}
-                                    placeholder='Address'
-                                />
+                            <Input
+                                name="address2"
+                                value={this.state.address2}
+                                onChange={this.handleInputChange}
+                                placeholder='Address'
+                            />
                             <Row>
                                 <Input
-                                    className = 'ccUserInfo'
+                                    className='ccUserInfo'
                                     name="zipcode2"
                                     value={this.state.zipcode2}
                                     onChange={this.handleInputChange}
                                     placeholder='Zipcode'
                                 />
                                 <Input
-                                    className = 'ccUserInfo'
+                                    className='ccUserInfo'
                                     name="city2"
                                     value={this.state.city2}
                                     onChange={this.handleInputChange}
@@ -650,14 +685,14 @@ class Bot extends Component {
                             </Row>
                             <Row>
                                 <Input
-                                    className = 'ccUserInfo'
+                                    className='ccUserInfo'
                                     name="cc2"
                                     value={this.state.cc2}
                                     onChange={this.handleInputChange}
                                     placeholder='Credit Card Number'
                                 />
                                 <Input
-                                    className = 'ccUserInfo'
+                                    className='ccUserInfo'
                                     name="CVV2"
                                     value={this.state.CVV2}
                                     onChange={this.handleInputChange}
@@ -666,14 +701,14 @@ class Bot extends Component {
                             </Row>
                             <Row>
                                 <Input
-                                    className = 'ccUserInfo'
+                                    className='ccUserInfo'
                                     name="ccMonth2"
                                     value={this.state.ccMonth2}
                                     onChange={this.handleInputChange}
                                     placeholder='Exp Month (2 digits)'
                                 />
                                 <Input
-                                    className = 'ccUserInfo'
+                                    className='ccUserInfo'
                                     name="ccYear2"
                                     value={this.state.ccYear2}
                                     onChange={this.handleInputChange}
