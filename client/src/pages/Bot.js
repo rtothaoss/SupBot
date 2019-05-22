@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import PropTypes from "prop-types";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import { Col, Row, Container } from "../components/Grid";
+import Header from '../components/HeaderTEST'
 import Jumbotron from "../components/Jumbotron";
 import Card from "../components/Card";
 import API from "../utils/API";
@@ -9,7 +11,9 @@ import { ShirtDropdown, PantsizeDropdown, ShoeDropdown } from "../components/Dro
 import './botStyle.css'
 import moment from 'moment-timezone';
 import Clock from 'react-live-clock';
+import { isNullOrUndefined } from 'util';
 var cron = require('node-cron');
+
 
 
 
@@ -76,9 +80,6 @@ class Bot extends Component {
         title: '',
         img: '',
         category: '',
-        authenticated: false,
-        error: null,
-        user: {},
         card1cart: '',
         card2cart: '',
         size: '',
@@ -88,7 +89,13 @@ class Bot extends Component {
         categoryBot2: '',
         currentDate: new Date(),
         day: '',
-        time: ''
+        time: '',
+        user: {},
+        error: null,
+        authenticated: false,
+        card1ready: 'Need Card 1 CC Info',
+        card2ready: 'Need Card 2 CC Info'
+
 
     }
 
@@ -111,7 +118,8 @@ class Bot extends Component {
             cc: this.state.cc,
             ccMonth: this.state.ccMonth,
             ccYear: this.state.ccYear,
-            CVV: this.state.CVV
+            CVV: this.state.CVV,
+            card1ready: 'Card 1 CC Info Entered'
         })
         alert('Card 1 data updated')
     };
@@ -129,17 +137,42 @@ class Bot extends Component {
             cc2: this.state.cc2,
             ccMonth2: this.state.ccMonth2,
             ccYear2: this.state.ccYear2,
-            CVV2: this.state.CVV2
+            CVV2: this.state.CVV2,
+            card2ready: 'Card 2 CC Info Entered'
         })
         alert('Card 2 data updated')
     };
 
 
     componentDidMount() {
-        // API.login()
-        // .then(res => window.location.assign(res.request.responseURL))
-        // .catch(err => console.log(err))
-        this.droplistLoaded();
+        fetch("http://localhost:3002/auth/login/success", {
+            method: "GET",
+            credentials: "include",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Credentials": true
+            }
+          })
+            .then(response => {
+                console.log(response)
+              if (response.status === 200) return response.json();
+              throw new Error("failed to authenticate user");
+            })
+            .then(responseJson => {
+              this.setState({
+                authenticated: true,
+                user: responseJson.user
+              });
+            })
+            .catch(error => {
+              this.setState({
+                authenticated: false,
+                error: "Failed to authenticate user"
+              });
+            });
+
+        // this.droplistLoaded();
     }
 
 
@@ -238,7 +271,7 @@ class Bot extends Component {
     }
 
     buttonTest = () => {
-
+        console.log(this.state.authenticated)
     }
 
     accessoryBot1 = () => {
@@ -445,16 +478,13 @@ class Bot extends Component {
         var time = moment(today).tz('America/New_York').format('hh:mm a z')
         const day = moment(today).format("dddd");
 
-
+        const { authenticated } = this.state;
 
 
         return (
             <>
                 <Row>
                     <Col size="md-10">
-                        <Jumbotron> 
-                            <button onClick={this._handleSignInClick}>Login</button>
-                            </Jumbotron>
 
                         <Jumbotron style={styles.howItWorksJumbo}>
                             <h1>How it works</h1>
@@ -494,7 +524,15 @@ class Bot extends Component {
                         </Jumbotron>
 
                         <Jumbotron style={styles.jumbotron}>
-
+                        <Header
+                            authenticated={authenticated}
+                            handleNotAuthenticated={this._handleNotAuthenticated}
+                        ></Header>
+                            {!authenticated ? (
+                                'to see droplist'
+                            ) : (
+                                this.droplistLoaded()
+                            )}
                             <Row>
                                 {this.state.items.map(item => (
                                     <Col size="md-3">
@@ -517,10 +555,11 @@ class Bot extends Component {
                             <h1>Checkout</h1>
 
                             {day} <Clock format={'h:mm:ss a z'} ticking={true} timezone={'US/Eastern'} />
-
+                            <br></br>
+                            <br></br>
                             <h3><u>Card 1</u></h3>
                             <p>{this.state.card1cart}</p>
-                            <br></br>
+                            {this.state.card1ready}
                             <br></br>
                             <br></br>
                             <button type='button' className='btn btn-dark' onClick={this.deleteSelectionCard1}>Delete Selection</button>
@@ -528,8 +567,7 @@ class Bot extends Component {
                             <br></br>
                             <h3><u>Card 2</u></h3>
                             <p>{this.state.card2cart}</p>
-                            <br></br>
-                            <br></br>
+                            {this.state.card2ready}
                             <br></br>
                             <br></br>
                             <button type='button' className='btn btn-dark' onClick={this.deleteSelectionCard2}>Delete Selection</button>
