@@ -8,6 +8,7 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
 
+
 router.use(
     cookieSession({
       name: "session",
@@ -94,9 +95,22 @@ router.get('/google', passport.authenticate('google', {
 router.get('/google/callback',
     passport.authenticate('google'),
     function (req, res) {
-        res.redirect('http://localhost:3000/bot')
+      console.log(req.cookies)
+      res.redirect('http://localhost:3000/bot')
         console.log('done')
     });
+
+router.get('/login/success', (req, res) => {
+  console.log(req)
+  // if(req.user) {
+  //   res.json({
+  //     success: true,
+  //     message: "user has successfully authenticated",
+  //     user: req.user,
+  //     cookies: req.cookies
+  //   })
+  }
+)
 
 
 module.exports = router;

@@ -43,6 +43,9 @@ export default {
 
   tester: function(data) {
     return axios.post('/bot/tester', data)
+  },
+  loginSuccessful: function() {
+    return axios.get('/login/success')
   }
 
 };

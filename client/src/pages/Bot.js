@@ -231,6 +231,7 @@ class Bot extends Component {
 
 
     _handleSignInClick = () => {
+        
         API.login()
             .then(res => window.location.assign(res.request.responseURL))
             .catch(err => console.log(err))
@@ -451,9 +452,9 @@ class Bot extends Component {
             <>
                 <Row>
                     <Col size="md-10">
-                        {/* <Jumbotron> 
+                        <Jumbotron> 
                             <button onClick={this._handleSignInClick}>Login</button>
-                            </Jumbotron> */}
+                            </Jumbotron>
 
                         <Jumbotron style={styles.howItWorksJumbo}>
                             <h1>How it works</h1>
