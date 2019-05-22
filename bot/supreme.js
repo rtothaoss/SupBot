@@ -42,7 +42,10 @@ puppeteer.use(pluginStealth())
 
 const accessoryBot1 = async ({BASE_URL, CHECKOUT, item1, name, email, telephone, address, zipcode, city, cc, ccMonth, ccYear, CVV}) => {
 
-  const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch({
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    headless: false 
+  });
 
   const page = await browser.newPage();
 
@@ -92,7 +95,10 @@ const accessoryBot1 = async ({BASE_URL, CHECKOUT, item1, name, email, telephone,
 
 const accessoryBot2 = async ({BASE_URL, CHECKOUT, item2, name2, email2, telephone2, address2, zipcode2, city2, cc2, ccMonth2, ccYear2, CVV2}) => {
 
-  const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch({
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    headless: false 
+  });
 
   const page = await browser.newPage();
 
@@ -142,7 +148,10 @@ const accessoryBot2 = async ({BASE_URL, CHECKOUT, item2, name2, email2, telephon
 
 const botWithSize1 = async ({BASE_URL, CHECKOUT, item1, itemSize1, name, email, telephone, address, zipcode, city, cc, ccMonth, ccYear, CVV}) => {
 
-  const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch({
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    headless: false 
+  });
 
   const page = await browser.newPage();
 
@@ -208,7 +217,10 @@ const botWithSize1 = async ({BASE_URL, CHECKOUT, item1, itemSize1, name, email, 
 
 const botWithSize2 = async ({BASE_URL, CHECKOUT, item2, itemSize2, name2, email2, telephone2, address2, zipcode2, city2, cc2, ccMonth2, ccYear2, CVV2}) => {
 
-  const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch({
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    headless: false 
+  });
 
   const page = await browser.newPage();
 
@@ -274,7 +286,10 @@ const botWithSize2 = async ({BASE_URL, CHECKOUT, item2, itemSize2, name2, email2
 
 const tester = async ({BASE_URL, CHECKOUT, item, name, email, telephone, address, zipcode, city, cc, ccMonth, ccYear, CVV}) => {
 
-  const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch({
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    headless: false 
+  });
 
   const page = await browser.newPage();
 
