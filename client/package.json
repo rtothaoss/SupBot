@@ -2,9 +2,9 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3002/",
   "dependencies": {
     "axios": "^0.18.0",
+    "http-proxy-middleware": "^0.19.1",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.25",
     "prop-types": "^15.7.2",
