@@ -22,10 +22,6 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-app.use(routes);
-
-mongoose.connect(process.env.MONGODB_URI || "mongodb://user:password1@ds019936.mlab.com:19936/heroku_v0kh9l0z");
-
 app.use(
   cookieSession({
     name: "session",
@@ -70,13 +66,11 @@ app.use(passport.session());
 // });
 
 
-// app.use(routes);
+app.use(routes);
 
-
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://user:password1@ds019936.mlab.com:19936/heroku_v0kh9l0z");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://user:password1@ds019936.mlab.com:19936/heroku_v0kh9l0z");
 
 cronScrape.runCron()
-
 
 
 app.listen(PORT, () => {
