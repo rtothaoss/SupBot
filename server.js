@@ -68,9 +68,6 @@ app.use(passport.session());
 
 app.use(routes);
 
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
 
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://user:password1@ds019936.mlab.com:19936/heroku_v0kh9l0z");
