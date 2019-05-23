@@ -68,6 +68,7 @@ app.use(passport.session());
 
 
 app.use(routes);
+console.log(routes)
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://user:password1@ds019936.mlab.com:19936/heroku_v0kh9l0z");
 
