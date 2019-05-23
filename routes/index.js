@@ -5,7 +5,7 @@ const botRoutes = require("../bot/botRoutes");
 const googleAuth = require('./auth/index')
 
 //Bot
-router.use('/bot', botRoutes)
+router.use('/supbot', botRoutes)
 
 //Google Auth
 router.use('/auth', googleAuth)

@@ -27,22 +27,22 @@ export default {
     return axios.get('/auth/google')
   },
   accessoryBot1: function(data) {
-    return axios.post('/bot/accessoryBot1', data)
+    return axios.post('/supbot/accessoryBot1', data)
   },
   accessoryBot2: function(data) {
-    return axios.post('/bot/accessoryBot2', data)
+    return axios.post('/supbot/accessoryBot2', data)
   },
 
   botWithSize1: function(data) {
-    return axios.post('/bot/botWithSize1', data)
+    return axios.post('/supbot/botWithSize1', data)
   },
 
   botWithSize2: function(data) {
-    return axios.post('/bot/botWithSize2', data)
+    return axios.post('/supbot/botWithSize2', data)
   },
 
   tester: function(data) {
-    return axios.post('/bot/tester', data)
+    return axios.post('/supbot/tester', data)
   },
   loginSuccessful: function() {
     return axios.get('/login/success')

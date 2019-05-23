@@ -36,13 +36,13 @@ app.use(passport.initialize());
 
 app.use(passport.session());
 
-app.use(
-  cors({
-    origin: "http://localhost:3000", // allow to server to accept request from different origin
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true // allow session cookie from browser to pass through
-  })
-);
+// app.use(
+//   cors({
+//     origin: "http://localhost:3000", // allow to server to accept request from different origin
+//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//     credentials: true // allow session cookie from browser to pass through
+//   })
+// );
 
 
 const authCheck = (req, res, next) => {
@@ -68,8 +68,6 @@ app.get("/", authCheck, (req, res) => {
 
 
 app.use(routes);
-
-
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://user:password1@ds019936.mlab.com:19936/heroku_v0kh9l0z");
 
