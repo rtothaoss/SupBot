@@ -124,7 +124,7 @@ function runCron() {
     var task = cron.schedule('* * * * *', () =>  {
         deleteDrop()
         scrapeSup()
-        // test()
+        test()
       }, {
         scheduled: false
       });   
