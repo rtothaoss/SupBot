@@ -4,10 +4,10 @@
 
 ![alt text](https://media.giphy.com/media/llxw630hSarzwkOQbe/giphy.gif 'Supbot In Action')
 
-#### Deployed Page: https://supbot123.herokuapp.com/ 
+#### Deployed Page: [here](https://supbot123.herokuapp.com/) 
 (work in progress: bot and google auth do not run on the deployed page just yet)
 
-#### Video Example: https://youtu.be/Lqnfn3zthrw
+#### Video Example: [youtube](https://youtu.be/Lqnfn3zthrw)
 
 
 Everyone wants Supreme but only a few can successfully get the items they want. The hyped items tend to be bought using bots and this app is here to offer a free service that does the same. We would all love to live in a world where everyone had a fair chance at grabbing the items they want but that's just not going to happen. This bot is here to make it possible for anyone to get the items they want. Hopefully with future updates and help from other developers this bot will be on par with the bots that cost you money.  
