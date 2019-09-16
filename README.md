@@ -33,6 +33,14 @@ You can also choose to execute bot file by itself if you so wish. Just be sure t
 
 ``` node supreme.js ```
 
+The running app is available in your browser on 
+
+`` http://localhost:3000 ``
+
+API routes for testing are available on 
+
+`` http://localhost:3002 ``
+
 If you would like to improve this bot you can view Puppeteer documentation here [Puppeteer Docs](https://github.com/GoogleChrome/puppeteer/blob/v1.16.0/docs/api.md)
 
 ##### Also if you have any ideas or would like to contribute to this project feel free to.
